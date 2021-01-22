@@ -62,3 +62,4 @@ sightings_sf <- st_as_sf(
 print("A lot of objects were created, but only boat_sightings and sightings_sf are required for further processing. At this stage, this script has to be run from within the script itself, and will not run properly from the source function.")
 rm(d_x, d_y, dd_x, dd_y, dms_x, dms_y, m_x, m_y, s_x, s_x_chr, s_y, s_y_chr, dms_x_2, dms_y_2)
 
+
