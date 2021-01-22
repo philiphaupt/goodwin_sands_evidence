@@ -37,6 +37,8 @@ shipwreck_summary %>%
 
 # plot to check
 # needs KEIFCA boundaries, MCZ and aggeregate to have been read in already: see scripts in folder.
+# exploratory map:
+aoi <- st_buffer(goodwin_utm31_sf, 7500)
 # plot map
 tmap::tm_shape(aoi)+
   tmap::tm_fill("white")+
@@ -45,12 +47,12 @@ tmap::tm_shape(aoi)+
   tmap::tm_shape(goodwin_utm31_sf)+
   tmap::tm_fill(col = "blue", alpha = 0.5) +
   tmap::tm_shape(goodwin_shipwrecks_wgs84_sf)+
-  tmap::tm_dots(shape = 13, size = 0.5)+
+  tmap::tm_dots(shape = 21, size = 0.5) +
   tmap::tm_shape(agg_area) +
   tm_polygons(col = "salmon",
-              alpha = 0.5) +
-  tmap::tm_shape(sightings_goodwin)+
-  tmap::tm_dots(col = "gear", palette=c(I='cyan', L1='yellow', L2='blue',O3='red',T='green'),stretch.palette = FALSE, size = 0.5, jitter = 0.1) +
-  tmap::tm_shape(fishing_dat_pts_goodwin_utm31_sf) +
-  tmap::tm_dots(col = "black", size = 0.5)
+              alpha = 0.5) #+
+  #tmap::tm_shape(sightings_goodwin)+
+  #tmap::tm_dots(col = "gear", palette=c(I='cyan', L1='yellow', L2='blue',O3='red',T='green'),stretch.palette = FALSE, size = 0.5, jitter = 0.1) #+
+  # tmap::tm_shape(fishing_dat_pts_goodwin_utm31_sf) +
+  # tmap::tm_dots(col = "black", size = 0.5)
   

@@ -12,4 +12,4 @@ goodwin_wgs84_sf <- st_transform(goodwin_utm31_sf, 4326) # only needed to inters
 
 
 # remove other MCZa
-rm(mcz, goodwin_etrs89_sf) # no longer required
+rm(mcz_etrs89_sf, goodwin_etrs89_sf) # no longer required

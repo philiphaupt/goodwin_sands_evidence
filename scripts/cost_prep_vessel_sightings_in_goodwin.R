@@ -7,7 +7,6 @@ library(readxl)
 # cost based on sightings
 
 
-
 # Read in the sightings data
 boat_sightings <- readxl::read_xlsx("C:/Users/Phillip Haupt/Documents/vessel_sightings/Vessel-sightings/data/Boat_sightings_20150101_to_20200601.xlsx", sheet = "Sheet1") %>% #C:/Users/Phillip Haupt/OneDrive - Kent & Essex Inshore Fisheries and Conservation Authority/
   filter(!is.na(Lattitude)) %>% 
@@ -19,8 +18,8 @@ boat_sightings <- readxl::read_xlsx("C:/Users/Phillip Haupt/Documents/vessel_sig
 print("The object created and used is: boat_sightings")
 
 # Convert the coordinates DMds to dd and add to object boat_sightings
-source("./scripts/convert_coordinates.R", local = FALSE ) # currently has to be read in manually - does not run from calling source?
-rm(d_x, d_y, dd_x, dd_y, dms_x, dms_y, m_x, m_y, s_x, s_x_chr, s_y, s_y_chr, dms_x_2, dms_y_2)
+source("./scripts/cost_prep_vessel_sightings_prep_convert_coordinates.R", echo=T) # currently has to be read in manually - does not run from calling source?
+# rm(d_x, d_y, dd_x, dd_y, dms_x, dms_y, m_x, m_y, s_x, s_x_chr, s_y, s_y_chr, dms_x_2, dms_y_2)
 st_crs(sightings_sf)
 sightings_utm31_sf <- sf::st_transform(sightings_sf, st_crs(goodwin_utm31_sf))
 
@@ -45,7 +44,7 @@ tmap::tm_shape(aoi)+
   tmap::tm_shape(goodwin_utm31_sf)+
   tmap::tm_fill(col = "blue", alpha = 0.5) +
   tmap::tm_shape(sightings_goodwin)+
-  tmap::tm_dots(col = "gear", palette=c(I='cyan', L1='yellow', L2='blue',O3='red',T='green'),stretch.palette = FALSE, size = 0.5, jitter = 0.1) +
-  tmap::tm_shape(fishing_dat_pts_goodwin_utm31_sf) +
-  tmap::tm_dots(col = "black", size = 0.5)
+  tmap::tm_dots(col = "gear", palette=c(I='cyan', L1='yellow', L2='blue',O3='red',T='green'),stretch.palette = FALSE, size = 0.5, jitter = 0.1) # +
+  # tmap::tm_shape(fishing_dat_pts_goodwin_utm31_sf) +
+  # tmap::tm_dots(col = "black", size = 0.5)
 #palette=c(A='cyan', B='yellow', H='blue',L='red',N='green'), 
