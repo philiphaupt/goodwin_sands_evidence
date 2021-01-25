@@ -23,12 +23,15 @@ source("scripts/feature_prep_sabellaria_and_mussels.R", echo=T) # included
  
 # 4. Feature prep -2 Habitat map (Natural England)
 source("./scripts/feature_prep_habitat_map.R", echo=T) # included
- 
+
+#--------
+# NOT INCLUDED IN THE PLAN YET - see hte list of features that still needs including
 # 5. Feature prep - 3 shipwrecks (OS maps - hydrographic office)
 source("./scripts/feature_prep_shipwrecks.R", echo=T) # not included
 
 # 6. Feature prep - Fish data NS IBTS (ICES DATRAS 2015 - 2020 included)
 source("./scripts/feature_prep_fish_NS_IBTS_survey.R", echo=T) # Warning: slow, large data set, long processing time # not included
+#----------
 
 # TARGETS
 # 7. Set conservation target for habitats and species & other features
