@@ -1,5 +1,9 @@
 # Read in MCZs and isolate Goodwin Sands MCZ
 
+library(sf)
+library(tidyverse)
+library(tmap)
+
 # Read in MPAs - MCZs
 dir("C:/Users/Phillip Haupt/Documents/GIS/MPAs") # lists all the files in teh directory
 st_layers("C:/Users/Phillip Haupt/Documents/GIS/MPAs/MPAs_England.gpkg") # Lists all the layers in the geopackage
@@ -13,3 +17,6 @@ goodwin_wgs84_sf <- st_transform(goodwin_utm31_sf, 4326) # only needed to inters
 
 # remove other MCZa
 rm(mcz_etrs89_sf, goodwin_etrs89_sf) # no longer required
+
+
+plot(goodwin_utm31_sf["geom"])
