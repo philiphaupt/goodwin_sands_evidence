@@ -17,9 +17,18 @@ pu$locked_out <- as.logical(FALSE)
 pu$cost <- 8 # arbitrary value assigned at this opint. Replace this with Fishing cost using sightings data. It should be above zero otherwise solutons will include ALL planning units with no prioritization.
 # Note plannin gunits wer created in QGIS before hand. See project on server.
 
+# lock out areas inside and outside 6 nm
+pu$locked_out[pu$inside_outside_6 == "outside"] <- TRUE # exclude planning units in MMO area
+#pu$locked_out[pu$inside_outside_6 == "inside"] <- FALSE - not needed as all were defined as FALSE when reading in the planning units.
+
+
 # a first copy of the planning unit file but slightly different column names to allow preprocessing of puvspr wihtout duplicating the names clash requirement.
 pu_geom_for_puvsp <- pu %>% 
   dplyr::select(puid, geom)
+
+
+
+
 
 # A second copy for official input use with unneccesary columns (fields) removed
 pu <- pu %>% 
