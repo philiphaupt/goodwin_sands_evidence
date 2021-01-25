@@ -1,4 +1,8 @@
 # PROBLEM DEFINTION -------------------------------------------------------
+library(tidyverse)
+library(prioritizr)
+library("gurobi")
+library("slam")
 
 #  Background information:
 #https://cran.r-project.org/web/packages/prioritizr/prioritizr.pdf
