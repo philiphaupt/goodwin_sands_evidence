@@ -23,10 +23,10 @@ puv_locked_out <- st_intersection(pu_geom_for_puvsp, agg_area) %>% # spatial joi
 # join to pu_no_geom (adding areas to exclude - aggeregate dredging approved areas)
 pu_no_geom_lo_added <- pu_no_geom %>% left_join(puv_locked_out, by = c("id" = "puid")) %>% 
   mutate(lo = case_when(
-    (locked_out == TRUE & lock == TRUE) ~ FALSE,# FALSE = AVAILABLE, TRUE = LOCKED_OUT: change this to FALSE and last one below to change the MMO (outside 6nm) to be available for solutions, but not aggeregate areas
+    (locked_out == TRUE & lock == TRUE) ~ TRUE,# FALSE = AVAILABLE, TRUE = LOCKED_OUT: change this to FALSE and last one below to change the MMO (outside 6nm) to be available for solutions, but not aggeregate areas
     (locked_out == FALSE & lock == TRUE) ~ TRUE, # keeps aggeregate areas locked out
     (locked_out == FALSE & is.na(lock)) ~ FALSE, # keeps aggeregate areas locked out
-    (locked_out == TRUE & is.na(lock)) ~ FALSE, # FALSE = AVAILABLE, TRUE = LOCKED_OUT: change this to FALSE and first one at the top to change the MMO (outside 6nm) to be available for solutions, but not aggeregate areas
+    (locked_out == TRUE & is.na(lock)) ~ TRUE, # FALSE = AVAILABLE, TRUE = LOCKED_OUT: change this to FALSE and first one at the top to change the MMO (outside 6nm) to be available for solutions, but not aggeregate areas
     )) %>% 
   mutate(locked_out = lo) %>% 
   dplyr::select(-c(lock, lo))
