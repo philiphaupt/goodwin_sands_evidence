@@ -1,4 +1,4 @@
- # spatial planning scnearion 1 MAIN script - calling the helper scripts in the correct sequence
+# spatial planning scnearion 1 MAIN script - calling the helper scripts in the correct sequence
 
 # # List all the files inthe scripts directory
 # dir("./scripts") # all the files in 
@@ -23,6 +23,7 @@ source("scripts/feature_prep_sabellaria_and_mussels.R", echo=T) # included
  
 # 4. Feature prep -2 Habitat map (Natural England)
 source("./scripts/feature_prep_habitat_map.R", echo=T) # included
+source("./scripts/feature_full_names_for_plots.R", echo = T)
 
 #--------
 # NOT INCLUDED IN THE PLAN YET - see hte list of features that still needs including
@@ -30,16 +31,17 @@ source("./scripts/feature_prep_habitat_map.R", echo=T) # included
 source("./scripts/feature_prep_shipwrecks.R", echo=T) # not included
 
 # 6. Feature prep - Fish data NS IBTS (ICES DATRAS 2015 - 2020 included)
-source("./scripts/feature_prep_fish_NS_IBTS_survey.R", echo=T) # Warning: slow, large data set, long processing time # not included
+# source("./scripts/feature_prep_fish_NS_IBTS_survey.R", echo=T) # Warning: slow, large data set, long processing time # not included
 #----------
 
-# TARGETS
-# 7. Set conservation target for habitats and species & other features
-source("./scripts/targets_set.R", echo=T)
-
-# PUVSP
+# 7. PUVSP
 # prepare PU vs Feature matrix
 source("./scripts/puvsp_prep.R", echo=T)
+
+# TARGETS
+# 8. Set conservation target for habitats and species & other features
+source("./scripts/targets_set.R", echo=T)
+
 
 # COST
 # 9. Vessel sightings
