@@ -41,13 +41,13 @@ shipwreck_summary %>%
 aoi <- st_buffer(goodwin_utm31_sf, 7500)
 # plot map
 tmap::tm_shape(aoi)+
-  tmap::tm_fill("white")+
+  tmap::tm_fill("white", alpha = 0.01)+
   tmap::tm_shape(KEIFCA)+
   tmap::tm_polygons() +
   tmap::tm_shape(goodwin_utm31_sf)+
-  tmap::tm_fill(col = "blue", alpha = 0.5) +
+  tmap::tm_fill(col = "cornflowerblue", alpha = 0.5) +
   tmap::tm_shape(goodwin_shipwrecks_wgs84_sf)+
-  tmap::tm_dots(shape = 21, size = 0.5) +
+  tmap::tm_dots(shape = 14, size = 0.1) +
   tmap::tm_shape(agg_area) +
   tm_polygons(col = "salmon",
               alpha = 0.5) #+
@@ -56,3 +56,25 @@ tmap::tm_shape(aoi)+
   # tmap::tm_shape(fishing_dat_pts_goodwin_utm31_sf) +
   # tmap::tm_dots(col = "black", size = 0.5)
   
+
+# plot depth of shipwrecks in Goodwin Sands
+goodwin_shipwrecks_wgs84_sf %>% sf::st_drop_geometry() %>% distinct(INFORMATION)
+  ggplot2::ggplot(aes(x = DEPTH)) +
+  geom_histogram(aes(y=..density..),binwidth = 5, alpha = 0.5, position = "identity", fill = "cornflowerblue", col ="white") +
+  geom_density(alpha = .4, col = "navy", lwd = 1)
+
+
+# plot depth of shipwrecks in Goodwin Sands
+goodwin_shipwrecks_wgs84_sf %>% sf::st_drop_geometry() %>%
+  ggplot2::ggplot(aes(x = )) +
+  geom_col(alpha = 0.5, position = "identity", fill = "cornflowerblue", col ="white") +
+  geom_density(alpha = .4, col = "navy", lwd = 1)
+
+
+# EXPORT FOR gstc FIRST X NUMBER OF COLUMNS
+goodwin_shipwrecks_wgs84_sf %>% sf::st_coordinates() %>% tibble::as_tibble() %>%  bind_cols(dplyr::select(goodwin_shipwrecks_wgs84_sf, 1:20)) %>% 
+  dplyr::select(-c(fid, GEOTYPE, GID, THEME, FEATURE_CODE)) %>% 
+  write.csv(file = "./output/export/wrecks_list_GoodwinSands_MCZ.csv")
+
+# quick_map
+
