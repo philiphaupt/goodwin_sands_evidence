@@ -1,4 +1,4 @@
-# spatial planning scnearion 1 MAIN script - calling the helper scripts in the correct sequence
+# spatial planning scenario 1 MAIN script - calling the helper scripts in the correct sequence
 
 # # List all the files inthe scripts directory
 # dir("./scripts") # all the files in 
@@ -23,13 +23,13 @@ source("scripts/feature_prep_sabellaria_and_mussels.R", echo=T) # included
  
 # 4. Feature prep -2 Habitat map (Natural England)
 source("./scripts/feature_prep_habitat_map.R", echo=T) # included
-source("./scripts/feature_full_names_for_plots.R", echo = T)
+
 
 #--------
 # NOT INCLUDED IN THE PLAN YET - see hte list of features that still needs including
 # 5. Feature prep - 3 shipwrecks (OS maps - hydrographic office)
 source("./scripts/feature_prep_shipwrecks.R", echo=T) # not included
-
+source("./scripts/feature_prep_shipwrecks_add_GSCT_additional_data.R", echo=T) # not included
 # 6. Feature prep - Fish data NS IBTS (ICES DATRAS 2015 - 2020 included)
 # source("./scripts/feature_prep_fish_NS_IBTS_survey.R", echo=T) # Warning: slow, large data set, long processing time # not included
 #----------
@@ -41,11 +41,19 @@ source("./scripts/puvsp_prep.R", echo=T)
 # TARGETS
 # 8. Set conservation target for habitats and species & other features
 source("./scripts/targets_set.R", echo=T)
+source("./scripts/feature_full_names_for_plots.R", echo = T) #  more info about features - needs to be run after spec is read in
 
 
 # COST
 # 9. Vessel sightings
 source("./scripts/cost_prep_vessel_sightings_in_goodwin.R", echo=T) # NB! Warning: needs to be run inside script!
+
+# Convert the coordinates DMds to dd and add to object boat_sightings
+source("./scripts/cost_prep_vessel_sightings_convert_coordinates.R", echo=T) # currently has to be read in manually - does not run from calling source?
+# rm(d_x, d_y, dd_x, dd_y, dms_x, dms_y, m_x, m_y, s_x, s_x_chr, s_y, s_y_chr, dms_x_2, dms_y_2)
+
+# plot vessel sightings
+source("./scripts/cost_prep_vessel_sightings_plot.R", echo = TRUE)
 
 # PROBLEM DEFINTION
 # 10. Define the conservation planning problem
@@ -56,7 +64,7 @@ source("./scripts/problem_definition.R", echo=T)
 source("./scripts/solutions_run.R", echo=T)
 
 # 12. map solutions
-source("./scripts/solution_map.R", echo=T) #Wrnging: run iside files to see outputs
+source("./scripts/solution_map.R", echo=T) 
 
 # 13. solution analysis
 source("./scripts/solution_analyse_cost_target_achievement.R", echo=T)

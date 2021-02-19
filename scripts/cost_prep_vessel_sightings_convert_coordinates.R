@@ -39,9 +39,9 @@ s_x <- sub("", "0", x=  s_x_chr) %>%
 
 # concatenate into a single character
 dms_y <- paste0(d_y, "°",m_y,"′",as.character(s_y), "″N")
-dms_y_2 <- char2dms(dms_y, chd = "°", chm = "′", chs = "″")
+dms_y_2 <- sp::char2dms(dms_y, chd = "°", chm = "′", chs = "″")
 dms_x <- paste0(d_x, "°",m_x,"′",as.character(s_x), "″E")
-dms_x_2 <- char2dms(dms_x, chd = "°", chm = "′", chs = "″")
+dms_x_2 <- sp::char2dms(dms_x, chd = "°", chm = "′", chs = "″")
 
 
 #convert to decimal coordinates
