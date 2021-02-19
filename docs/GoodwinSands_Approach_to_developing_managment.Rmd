@@ -1,0 +1,147 @@
+---
+title: "Goodwin Sands MCZ Management Planning - Approach to identifying management options"
+author: "Philip Haupt (Kent and Essex Lead Science and Conservation Officer)"
+date: "18/02/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+## Purpose
+
+The purpose of this document is to outline the approach that Kent and Essex IFCA (KEIFCA) are planning to take to develope management options for Goodwin Sands Marine Conservation Zone (MCZ). 
+
+## Government bodies
+KEIFCA is the responsible local authority for fisheries management of MCZs in inshore areas within the Kent and Essex district, while the MMO manages fisheries activities in English waters from 6 NM to the offshore boundary of its territorial waters. The Goodwin Sands MCZ (277 km^2^) straddles the inshore boundary of KEIFCA's district 6 NM into the waters further offshore. The MCZ therefore falls partly within the KEIFCA district and partly in the MMO's jurisdiction. Natural England is responsible for providing conservation advice for all Marine Protected Areas within England's inshore waters to support sites to achieve their conservation objectives and to guide effective management. It is therefore essential that these three Government bodies work closely together in developing management to achieve an effective outcome.
+
+```{r, out.width = "70%",fig.align="center",fig.cap = "Fig. 1 Goodwin Sands MCZ boundaries and the 6 NM district boundary", out.extra='style="background-color: #000000; padding:1px; display: inline-block;"', echo=FALSE}
+library(knitr)
+include_graphics("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/GoodwinSandsMCZ_20201110_PH_150dpi.png")
+
+```
+
+Owing to the site's geographic spread accross KEIFCA and MMO's jurisdiction, it is vital for the three Government bodies to come to an agreement about the roles of the MMO and KEIFCA in undertaking a Fisheries assessment and developing management for the site.
+
+
+## Conservation features and objectives of Goodwin Sands 
+The Goodwin Sands MCZ was designated 31^st^ May 2019 to protect the following six features and there respective conservation objectives are stated: 
+
+1. Blue mussel beds (*Mytilus edulis*): Recover to favourable condition
+2. English Channel outburst flood features:Maintain in favourable condition
+3. Moderate energy circalittoral rock: Recover to favourable condition
+4. Ross worm reefs (*Sabellaria spinulosa*): Recover to favourable condition
+5. Subtidal coarse sediment: Maintain in favourable condition
+6. Subtidal sand: Maintain in favourable condition
+
+Ross worm reefs and blue mussel beds both have objectives to recover to a favourable conservation status. Both features are sensitive to fishing activities which interact with the seabed, such as bottom towed gears, which can penetrate and abrade the substrate, lead to direct loss of the species and can stir up and increase levels of sedimentation. In response, KEIFCA are looking to develop management measures to address the potential impacts of bottom towed gears in the site to minimise pressures from relevant fishing activities.
+
+## Process up to date
+KEIFCA has started identifying assessing conservation features and their conservation objectives for the site, reviewed potential fishing activity related pressures and secured some relevant data sets and a spatial planning processes to underpin decisions using a scientifically rigorous process. Throughout this KEIFCA have been contacting Natural England and the MMO to make them aware that the process has been initiated, and that we are looking to engage with them. Furthermore, KEIFCA have started engaging with two key stakeholders to make them aware that management planning for the site is to start this year, and that it is likely to consider measures that will restrict the use of bottom towed gear in the site (to be as transparent as possible from the outset).  This document now describes the planning process in more detail.
+
+# Approach 
+## Timeline
+
+```{r timeline, echo = FALSE, message=FALSE}
+library(vistime)
+
+timeline_data_simple <- data.frame(
+  #id = 1:nrow(timeline_data_simple),
+  event = c(
+    "Pre-planning engagement",
+    "Prelim assessment",
+    "Data collation",
+    "Scoping meeting",
+    "Identifying options",
+    "Review options" ,
+    "Funding bid",
+    "Sabellaria survey"
+  ),
+  start = c(
+    "2020-06-22",
+    "2020-11-10",
+    "2020-12-01",
+    "2021-03-08",
+    "2021-04-01",
+    "2021-04-15" ,
+    "2020-12-20",
+    "2021-10-08"
+  ),
+  end = c(
+    "2021-03-10",
+    "2020-12-01",
+    "2021-02-28",
+    "2021-03-15",
+    "2021-03-15",
+    "2021-04-15",
+    "2021-01-15",
+    "2021-10-30"
+  ),
+  my_grps = c(
+    "Engagement",
+    "Research",
+    "Research",
+    "Engagement",
+    "Research",
+    "Engagement",
+    "New research",
+    "New research"
+  ),
+  group = "my_grps",
+  color = c(
+    '#cbb69d', '#603913','#603913' , '#cbb69d','#603913','#cbb69d','#c69c6e','#c69c6e'
+    ),
+  fontcolor = c(
+    "black", "white","white","black","white", "black", "black", "black"
+    )
+)
+
+vistime(timeline_data_simple)
+
+```
+
+## Stakeholders
+In addition to stakeholders from the three Government bodies, early engagement has with primary stakeholders  has been initiated to notify them of plans to develop management for Goodwin Sands MCZ. These include Thanet Fishermen's Association (TFA) and the Goodwin Sands Conservation Trust (GSCT). See Table 1 for a list of representatives for each organisation.
+
+```{r stakeholder table, echo = FALSE}
+library(knitr)
+library(tidyverse)
+stakeholders <- tibble(
+    Name = c("John Nichols", "Merlin Jackson", "Joanna Tomson", "Fiona Punter", "Will Wright", "Philip Haupt", "Annabel Plumeridge", "Guiletta Holly", "Christina Relf" ,"Tim Nixon", "Callum Williams"),
+    Organisation = c("TFA", "TFA", "GSCT","GSCT", "KEIFCA","KEIFCA", "KEIFCA" ,"NE","NE", "MMO", "MMO")
+  )
+kable(stakeholders, caption = "Table 1. Stakeholders")
+```
+
+## Developing spatial management options
+This provides a description of the process that KEIFCA has thusfar employed to investigate management options for the site, and would like to discuss with project partners to help 1) scope out the roles of the organisations based on initial findings, 2) agree the input data sets and the 3) plannign process.
+
+### Plannign domain
+Goodwin Sands MCZ coordinates were taken directly from the designation order to create spatial boundaries in a GIS which was used as the plannign domain. 
+
+### Planning units
+
+### Data
+Key data sets are focussed around the designated features, but additoinal features that are of conservation concern may be included while planning 
+
+### Designated features
+Habitat maps of designated features (EUNIS Level 3)
+Species Of Conservation Concern (SOCI) for species: Mussels and Ross worm. 
+Cefas 2014 benthic survey data
+OSPAR data set: <https://www.emodnet-seabedhabitats.eu/access-data/download-data/?linkid=ospar2018_poly>
+
+### Additional feature data
+
+
+### Socio-econmic cost
+
+### Spatial optimisation
+Spatial plannign was underpinned using systematic conservation planning principles and reserve netwrok planning software. We used interger linear programming equations within was used in to build a model which selects the fewest planning units
+
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
