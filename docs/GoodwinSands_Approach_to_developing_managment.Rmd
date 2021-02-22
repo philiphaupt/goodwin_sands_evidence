@@ -13,39 +13,103 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Purpose
 
-The purpose of this document is to outline the approach that Kent and Essex IFCA (KEIFCA) are planning to take to develope management options for Goodwin Sands Marine Conservation Zone (MCZ). 
+The purpose of this document is to outline the approach that Kent and Essex IFCA (KEIFCA) are planning to take to develop management options for Goodwin Sands Marine Conservation Zone (MCZ). 
 
-## Government bodies
-KEIFCA is the responsible local authority for fisheries management of MCZs in inshore areas within the Kent and Essex district, while the MMO manages fisheries activities in English waters from 6 NM to the offshore boundary of its territorial waters. The Goodwin Sands MCZ (277 km^2^) straddles the inshore boundary of KEIFCA's district 6 NM into the waters further offshore. The MCZ therefore falls partly within the KEIFCA district and partly in the MMO's jurisdiction. Natural England is responsible for providing conservation advice for all Marine Protected Areas within England's inshore waters to support sites to achieve their conservation objectives and to guide effective management. It is therefore essential that these three Government bodies work closely together in developing management to achieve an effective outcome.
+A key issue that KEIFCA would like to determine in partnership with the MMO and NE is the scope of the work to be undertaken. In essence, the roles of the MMO and KEIFCA in developing Fisheries Assessments and management needs to be determined, given that a single Assessment and Management plan is ideal, yet the MCZ falls within jurisdictions of both the MMO and KEIFCA.
 
-```{r, out.width = "70%",fig.align="center",fig.cap = "Fig. 1 Goodwin Sands MCZ boundaries and the 6 NM district boundary", out.extra='style="background-color: #000000; padding:1px; display: inline-block;"', echo=FALSE}
+Co-development of the Fisheries Assessment and management has previously been done for Margate and Long Sands SAC, between the MMO and KEIFCA. KEIFCA proposes that a similar approach is taken to developing management options for the Goodwin Sands MCZ here.
+
+If this is agreed, the key issue then is who leads on the two components, and how could the work and roles be divided. This will be the key topic to discuss in March 2021 in a meeting between the Government bodies (NE, MMO and KEIFCA).
+
+Other important issues to resolve includes the stakeholders, data, the process, and are described in this document.
+
+## Process up to date
+KEIFCA has started identifying assessing conservation features and their conservation objectives for the site, reviewed potential fishing activity related pressures and secured some relevant data sets and a spatial planning processes to underpin decisions using a scientifically rigorous process. Throughout this KEIFCA have been contacting Natural England and the MMO to make them aware that the process has been initiated, and that we are looking to engage with them. Furthermore, KEIFCA have started engaging with two key stakeholders to make them aware that management planning for the site is to start this year, and that it is likely to consider measures that will restrict the use of bottom towed gear in the site (to be as transparent as possible from the outset). This document now describes the planning process in more detail.
+
+## Background: Government bodies
+KEIFCA is the responsible local authority for fisheries management of MCZs in inshore areas within the Kent and Essex district, while the MMO manages fisheries activities in English waters from 6 NM to the offshore boundary of English territorial waters. The Goodwin Sands is a large MCZ (277 km^2^) which straddles the inshore boundary of KEIFCA's district (0 - 6 NM) thereby falling partly within the KEIFCA district and partly in the MMO's jurisdiction. Natural England is responsible for providing conservation advice for all Marine Protected Areas within England's inshore waters to support sites to achieve their conservation objectives and to guide effective management. These three Government bodies are therefore required to work closely together in developing management for Goodwin Sands MCZ.
+
+```{r, out.width = "70%",fig.align="center",fig.cap = "Fig. 1 Goodwin Sands MCZ boundaries straddling the 6 NM inshore-offshore district boundary.", out.extra='style="background-color: #000000; padding:1px; display: inline-block;"', echo=FALSE}
 library(knitr)
 include_graphics("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/GoodwinSandsMCZ_20201110_PH_150dpi.png")
 
 ```
 
-Owing to the site's geographic spread accross KEIFCA and MMO's jurisdiction, it is vital for the three Government bodies to come to an agreement about the roles of the MMO and KEIFCA in undertaking a Fisheries assessment and developing management for the site.
-
-
-## Conservation features and objectives of Goodwin Sands 
+## Background: Conservation features and objectives 
 The Goodwin Sands MCZ was designated 31^st^ May 2019 to protect the following six features and there respective conservation objectives are stated: 
 
-1. Blue mussel beds (*Mytilus edulis*): Recover to favourable condition
-2. English Channel outburst flood features:Maintain in favourable condition
-3. Moderate energy circalittoral rock: Recover to favourable condition
-4. Ross worm reefs (*Sabellaria spinulosa*): Recover to favourable condition
-5. Subtidal coarse sediment: Maintain in favourable condition
-6. Subtidal sand: Maintain in favourable condition
+1. Ross worm reefs (*Sabellaria spinulosa*): **Recover** to favourable condition
+2. Blue mussel beds (*Mytilus edulis*): **Recover** to favourable condition
+3. Moderate energy circalittoral rock: **Recover** to favourable condition
+4. Subtidal coarse sediment: Maintain in favourable condition
+5. Subtidal sand: Maintain in favourable condition
+6. English Channel outburst flood features:Maintain in favourable condition
 
-Ross worm reefs and blue mussel beds both have objectives to recover to a favourable conservation status. Both features are sensitive to fishing activities which interact with the seabed, such as bottom towed gears, which can penetrate and abrade the substrate, lead to direct loss of the species and can stir up and increase levels of sedimentation. In response, KEIFCA are looking to develop management measures to address the potential impacts of bottom towed gears in the site to minimise pressures from relevant fishing activities.
+```{r, figures-designated_features, out.width="100%",fig.cap = "Fig. 2 The six designated features of the Goodwin Sands MCZ.", out.extra='style="background-color: #000000; padding:1px; display: inline-block;"',echo = FALSE, message=FALSE, warning=FALSE}
+library(cowplot)
+library(ggplot2)
 
-## Process up to date
-KEIFCA has started identifying assessing conservation features and their conservation objectives for the site, reviewed potential fishing activity related pressures and secured some relevant data sets and a spatial planning processes to underpin decisions using a scientifically rigorous process. Throughout this KEIFCA have been contacting Natural England and the MMO to make them aware that the process has been initiated, and that we are looking to engage with them. Furthermore, KEIFCA have started engaging with two key stakeholders to make them aware that management planning for the site is to start this year, and that it is likely to consider measures that will restrict the use of bottom towed gear in the site (to be as transparent as possible from the outset).  This document now describes the planning process in more detail.
+sabellaria <- ggdraw() + draw_image("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/Sabellaria_reefs_euo_c_oceana.jpg", scale = 0.9) + draw_label("2.1) Ross worm reefs", size = 9, vjust = -9, hjust = 0.85)
+
+mussels <- ggdraw() + draw_image("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/Mytilus_edulis_marlin.jpg", scale = 0.9) + draw_label("2.2) Blue mussel beds", size = 9, vjust = -9, hjust = 0.75) 
+
+rock <- ggdraw() + draw_image("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/Circalittoral_rock_vertical_sponges_anenomes_Keith_Hiscock.jpg",scale = 0.9) + draw_label("2.3) Circalittoral rock", size = 9, vjust = -9, hjust = 0.75) 
+
+coarse_sediment <- ggdraw() + draw_image("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/sub_tidal_coarse_sediment.jpg", scale = 0.9) + draw_label("2.4) Subtidal coarse sediment", size = 9, vjust = -9, hjust = 0.65)
+
+sand <- ggdraw() + draw_image("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/sub_tidal_sand.png", scale = 0.9) + draw_label("2.5) Subtidal sand", size = 9, vjust = -9, hjust = 0.75)
+
+flood <- ggdraw() + draw_image("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/Dover_straits.png", scale = 0.9) + draw_label("2.6) Outburst flood feature", size = 9, vjust = -9, hjust = 0.65)
+
+plot_grid(sabellaria, mussels,  rock, coarse_sediment, sand, flood, rows = 2, cols = 3)
+```
+
+## Features with recover objectives
+
+Ross worm reefs, blue mussel beds and circalittoral rock have objectives to recover to a favourable conservation status. These features are known to be sensitive to fishing activities which interact with the seabed (<https://www.marlin.ac.uk/data-extract>), such as bottom towed gears. 
+
+Ross worm reefs are of particular conservation interest, given the enhanced biodiversity associated with the three dimensional structure provided reef. 
+
+### Ross worm reefs
+Ross worm shows medium to high levels of sensitivity to pressures associated with bottom towed fishing gear, such as:
+
+1. Removal of non-target species
+2. Physical change (to another seabed type)
+3. Physical change (to another sediment type)
+4. Abrasion/disturbance of the substrate on the surface of the seabed
+5. Penetration and/or disturbance of the substrate below the surface of the seabed, including abrasion
+6. Smothering and siltation rate changes (Heavy)
+*(to be fully assessed in the Fisheries Assessment for the site).*
+
+## Fishing activity in the site
+There is limited fishing activity in the Goodwin Sands MCZ. In 2019 (at the time of designation)  the cost estimates for the site were approximately £4k per year relating to the ports and harbours sector, £2k per year relating to the commercial fishing sector and £1k per year relating to aggregates <https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/804687/mcz-tranche3-consult-ia.pdf>.
+
+The inshore fishing fleet's activities are primarily potting, trawling and angling, which tends to be concentrated around the peripheries of the site (KEIFCA unpublished data). The offshore is known to be used by Belgium beamers, and further investigation is required to characterise the commercial fishing sector's use of the site.
+
+## Management challenges
+
+### Geographical distribution of power/jurisdictions
+The Goodwin Sands MCZ falls partly within the jurisdiction of the MMO and partly KEIFCA, presenting challenges to develop management for the site. Ideally (conservation best practice), the whole site is to be treated as a single entity for which a Fisheries Assessment and management is to be developed in a holistic manner. The key issue that needs resolving is how roles and workloads will be shared among the MMO and KEIFCA.
+
+### Geographical distribution of conservation features
+While the geographical area of the zones falling into KEIFCA's and MMO's jurisdictions are roughly similar in size, the designated features are not evenly distributed across the site. For example, circalittoral rock falls almost exclusively in the offshore area, while the majority of subtidal sand is within 6 NM limit. Furthermore the CEFAS 2014 survey suggests that  Ross worm is principally located within the north eastern corner of the MMO's jurisdiction. 
+ 
+Further to the argument for co-management, several of the designated features are located close to the 6 NM boundary, and it would therefore make intuitive sense to seek transparent co-development of management to facilitate efficient spatial planning across the 6 NM boundary between jurisdictions.
+
+### Paucity of data
+The principal data set available for Ross is from the CEFAS 2014 Goodwin Sands. While this data suggested the core area to be within the north eastern side of the MCZ, it would probably be incorrect to assume that the data set represents the entire site, as only 90 samples were collect, and partially within the offshore area. Consequently, KEIFCA are seeking modelled spatial distribution data for Ross worm to obtain a  better idea of potential habitat that would be suitable for Ross worm in the entire site. We have been in contact with JNCC and DEFRA to obtain existing modelled data.
+
+The three dimensional reef structure provided by Ross worm is a key attribute associated with the enhancement of biodiversity, and also the designated feature, as opposed to the presence of the species itself. While the species has the potential to grow rapidly, it is likely that the substantial reef structures require sufficient time to build up without major disturbance events. Consequently it is the reef structures that KEIFCA are most interested in protecting from bottom towed gears. KEIFCA have applied for funding a small project in which it hopes to survey and assess the reef index of known Ross worm within the Goodwin Sands MCZ. This will provide critical information to refine where management is best placed to protect Sabellaria reefs from fishing impacts.
+
+Furthermore, Ross worm  is known to be ephemeral, with relatively high degree of spatial-temporal variation in its distribution range. While it is clear that Ross was present to abundant in some areas in Goodwin sands MCZ in 2014, we do not have a firm understanding of how much it change the species distribution has undergone since that time, and how it may change in future. KEIFCA has been engaging with Eastern IFCA to get a better understanding of their spatio-temporal mapping surveys used in the Wash, where they run an intensive annual monitoring programme. KEIFCA  are not planning at this stage to embark on an annul monitoring programme given the high resource demands of such a project.
 
 # Approach 
 ## Timeline
+The Goodwin Sands MCZ was designated in May 2019. KIEFCA has had early (pre-planning) discussions with NE, MMO and two key stakeholders since. KEIFCA  collated data sets and ran preliminary assessments (thorough a spatial optimisation process) to identify potential spatial solutions that could be used to guide where to put management within the MCZ. The purpose of prelimanry assessments were to identify a data requirements, process, and pitfalls to help inform discussions about co-management with the MMO, NE and stakeholders.
 
-```{r timeline, echo = FALSE, message=FALSE}
+KEIFCA is hoping to develop the formal Fisheries Assessment and Management in parallel, becuase KEIFCA would like to be as transparent with stakeholders as possible from the outset about the intentions and likely outcome of management for the site.
+
+```{r timeline,echo = FALSE, message=FALSE}
 library(vistime)
 
 timeline_data_simple <- data.frame(
@@ -99,49 +163,132 @@ timeline_data_simple <- data.frame(
     )
 )
 
-vistime(timeline_data_simple)
+#vistime(timeline_data_simple)
 
 ```
 
 ## Stakeholders
-In addition to stakeholders from the three Government bodies, early engagement has with primary stakeholders  has been initiated to notify them of plans to develop management for Goodwin Sands MCZ. These include Thanet Fishermen's Association (TFA) and the Goodwin Sands Conservation Trust (GSCT). See Table 1 for a list of representatives for each organisation.
+In addition to stakeholders from the three Government bodies, early engagement with primary stakeholders has been initiated to notify them of plans to develop management for Goodwin Sands MCZ. These include Thanet Fisherman's Association (TFA) and the Goodwin Sands Conservation Trust (GSCT). See Table 1 for a list of representatives for each organisation.
 
-```{r stakeholder table, echo = FALSE}
+```{r stakeholder table, echo = FALSE, warning=FALSE, message=FALSE}
 library(knitr)
 library(tidyverse)
 stakeholders <- tibble(
     Name = c("John Nichols", "Merlin Jackson", "Joanna Tomson", "Fiona Punter", "Will Wright", "Philip Haupt", "Annabel Plumeridge", "Guiletta Holly", "Christina Relf" ,"Tim Nixon", "Callum Williams"),
     Organisation = c("TFA", "TFA", "GSCT","GSCT", "KEIFCA","KEIFCA", "KEIFCA" ,"NE","NE", "MMO", "MMO")
   )
-kable(stakeholders, caption = "Table 1. Stakeholders")
+kable(stakeholders, caption = "Table 1. Stakeholders in developing management for the Goodwin Sands MCZ")
 ```
 
-## Developing spatial management options
-This provides a description of the process that KEIFCA has thusfar employed to investigate management options for the site, and would like to discuss with project partners to help 1) scope out the roles of the organisations based on initial findings, 2) agree the input data sets and the 3) plannign process.
+KEIFCA would like to invite NE and MMO to review the current list and make further suggestions to ensure appropriate stakeholder representation.
 
-### Plannign domain
-Goodwin Sands MCZ coordinates were taken directly from the designation order to create spatial boundaries in a GIS which was used as the plannign domain. 
+
+
+## Identifying spatial management options
+This provides a description of the process that KEIFCA has thus far employed to investigate management options for the site, to agree the input data sets and the planning process used to identify spatial conservation options.
+
+The aim of the process is to identify a suitable area/s to set aside for restricting the use of bottom towed gears. Spatial planning was underpinned using systematic conservation planning principles and throught the use reserve network planning software, Gurobi, R and the PrioritizeR package.
+
+### Planning domain
+Goodwin Sands MCZ coordinates were taken directly from the designation order to create spatial boundaries in a GIS which was used and is referred to as the planning domain, site, or the MCZ, interchangably here. the spatial distribution of all input data and processes described below are limited to the planning domain.
 
 ### Planning units
+The planning domain was then divided into equal sized hexagonal planning units within which the quantity of all conservation features was calculated using standard GIS procedures. The conservation features is described further below, but to help the reader understand the imemdiate following section, the reader can assume that *conservation features* refers to the spatial distribution of features that we wish to protect within the area for which management is being developed.
 
-### Data
-Key data sets are focussed around the designated features, but additoinal features that are of conservation concern may be included while planning 
+Planning units are then selected for inclusion (or exclusion) as part of a set of planning units that collectively meet quantitative conservation targets (described below) for all the conservation features. Hereafter referred to as solution or conservation solution.
 
-### Designated features
+Planning units can be locked-in or -out before determining a solution. For example, some planning units may not be suitable for meeting conservation objectievs. For example, in the preliminary spatial planning, the area licensed for aggeregate dredging in the site was locked-out, as it would be contraversial to ban bottom towed fishing gear when intesive aggeregate dredging is allowed. 
+
+Furthermore, a socio-economic cost can be associated with each planning unit, to preferentially attempt to select planning units that can meet conservation targets but do not carry a high socio-economic cost.
+
+The selection of planning units to create a *conservation solution* is also described further below, but in principal it refers to a mathametical algorithm that identifies the planning units which are best to include in a solution to meet the conservation targets.
+
+
+
+```{r planning_units, echo=FALSE, warning=FALSE, message=FALSE}
+library(sf, warn.conflicts = FALSE)
+library(tmap, warn.conflicts = FALSE)
+library(tidyverse, warn.conflicts = FALSE)
+
+# KEIFCA boundaries
+KEIFCA <- st_read("C:/Users/Phillip Haupt/Documents/GIS/6M_12M_from_territorial_sea_baseline_5_Jun_20_and_1983/KEIFCA_6NM.GPKG",  layer = "KEIFCA_6NM_district_1983_baseline_until_2020", quiet = TRUE) %>% st_as_sf()
+
+# Read in MPAs - MCZs
+mcz_etrs89_sf <- st_read("C:/Users/Phillip Haupt/Documents/GIS/MPAs/MPAs_England.gpkg", layer = "MCZs_England_ETRS89_3035", quiet = TRUE) # reads in the specified layer from geopackage
+
+goodwin_etrs89_sf <- mcz_etrs89_sf %>%  filter(MCZ_NAME == "Goodwin Sands") # KEEP ONLY Goodwin Sands MCZ - study area
+goodwin_utm31_sf <- st_transform(goodwin_etrs89_sf, 32631) # transform the projection to UTM31N which is the standard used at KEIFCA.
+goodwin_wgs84_sf <- st_transform(goodwin_utm31_sf, 4326) # only needed to intersect cefas survey data - which is a lot of points already in WGS84; therefore easier to transform Goodwin and then transform the intersected result to utm31N than transform ALL the points before intersecting.
+
+# remove other MCZa
+rm(mcz_etrs89_sf, goodwin_etrs89_sf) # no longer required
+
+# PLANNING UNITS
+pu <- sf::st_read("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/goodwin_pu_utm31n.gpkg", quiet = TRUE)
+pu$inside_outside_6 <- as.factor(pu$inside_outside_6)
+
+tmap::tmap_mode("plot")
+  tm_shape(goodwin_utm31_sf)+
+  tm_borders()+
+  tm_shape(KEIFCA) +
+  tm_borders(lwd = 2)+
+  tm_shape(pu)+
+  tm_polygons("inside_outside_6", palette=c(inside = "cornflowerblue", outside = "navy"), stretch.palette = FALSE, alpha = 0.4)
+  
+
+
+```
+
+### Conservation targets
+Conservation targets are quantitative targets, usually speciifed as the proportion of the overall amount (may be area or abudnance) of a conservation feature in the planning domain. Hereafter referred to as targets of conservation targets interchangably.
+
+### Conservation Features
+The  input data is then further divided into 1) designated feature data, 2) additional features data. 
+
+A (spatial) solution will then calculated to meet the targets for the two types of conservation features, however, it will use assign a priority to meeting the targets for designated features over additional features to ensure meeting all targets for designated features as far as possible.
+
+#### Designated features
+The table below specifies the conservation features and their data sources. English Channel outburst fatures were not included as this geoloigcal features is larger thant eh site itself.
+
+```{r data_sources, echo = FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+library(tidyverse)
+data_sets <- tibble(`Data set ID` =
+  seq(1:5),
+  `Data set name` = c(
+    "Ross worm reefs",
+    "Blue mussel beds",
+    "Moderate energy circalittoral rock",
+    "Subtidal coarse sediment",
+    "Subtidal sand"
+  ),
+  Source = c(
+    "Cefas 2014 survey, NE SOCI data, OSPAR data, JNCC spatial distribution maps",
+    "Cefas 2014 survey, NE SOCI data",
+    "NE Habitat maps",
+    "NE Habitat maps",
+    "NE Habitat maps"
+  ))
+
+kable(data_sets, caption = "Table 2. Data sets for designated features used in developing management for the Goodwin Sands MCZ")
+```
 Habitat maps of designated features (EUNIS Level 3)
 Species Of Conservation Concern (SOCI) for species: Mussels and Ross worm. 
 Cefas 2014 benthic survey data
 OSPAR data set: <https://www.emodnet-seabedhabitats.eu/access-data/download-data/?linkid=ospar2018_poly>
 
-### Additional feature data
+#### Additional feature data
+1. Seal haul outs, source: Zoological Society of London (ZSL)
+2. Essential Fish Habitat, source: (CEFAS and MMO)
+3. Bird survey data: Sandwich Bird Obseratrory, RSPB
+4. Ship wrecks: UKHO, GSCT
+5. Subtidal mixed sediments (a non-designated feature of the site)
 
+The additional data sources are currently being explored, but are not mandatory to inlcude in developing management for meeting the site objectives.
 
-### Socio-econmic cost
+### Socio-economic cost
+A socio-economic cost can be associated with planning units to further inform the process of selecting planning units for inclusion and exclusion as part of a solution.
 
-### Spatial optimisation
-Spatial plannign was underpinned using systematic conservation planning principles and reserve netwrok planning software. We used interger linear programming equations within was used in to build a model which selects the fewest planning units
+### Conservation solutions throught optimisation
+ We used integer linear programming equations within was used in to build a model in R which selects the fewest planning units to meet the targets.
 
-
-
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
