@@ -1,18 +1,36 @@
-# Locked out area from aggeregate area
+# Add the aggeregate extraction area as LOCKED OUT - 
 
-library(sf)
 library(tidyverse)
+library(sf)
+library(geojsonsf)
+
+# Read in the aggeregate areas from webserver: (see further below how to read in teh file from hard disc if this fails)
+# Get the most up to date version from the Crown EState ArcGIS webserver
+url_json <- "https://opendata.arcgis.com/datasets/d734d753d04649e2a7e1c64b820a5df9_0.geojson"
+df <- geojsonsf::geojson_sf(url_json)
+
+#-----------------
+# From Arcgis server:
+# library(devtools)
+# #devtools::install_github("yonghah/esri2sf")
+# library("esri2sf")
+#url <- "https://services2.arcgis.com/PZklK9Q45mfMFuZs/arcgis/rest/services/OffshoreMineralsAggregatesSiteAgreements_EnglandWalesNI_TheCrownEstate/FeatureServer/0/query?outFields=*&where=1%3D1"
+#where <- "Area_Numbe = 521"
+#df <- esri2sf(url, where = where)
+#-----------------------
 
 
 
-
-# add the aggeregate extraction area as LOCKED OUT - 
 #  Read in aggeregate areas:
-agg_area <- read_sf("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/Goodwin_aggregate_area.shp")
-#plot(agg_area["geometry"])
-#st_crs(agg_area)
+
+# FROM FILE ON HARD DISC:
+# agg_area <- read_sf("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/Offshore_Minerals_Aggregates_Site_Agreements/Offshore_Minerals_Aggregates_Site_Agreements.shp") %>% 
+#   dplyr::filter(Area_Numbe == 521)
+# plot(agg_area["geometry"])
+
 #st_crs(pu_geom_for_puvsp)
-agg_area <- st_transform(agg_area, st_crs(pu_geom_for_puvsp)) # make projections the same UTM31 N
+agg_area <- df %>% dplyr::filter(Area_Number == 521) %>% 
+  st_transform(st_crs(pu_geom_for_puvsp)) # make projections the same UTM31 N
 
 # intersect with planning units - keeping ony id numbers for the planning units which intersect with the aggeregate extraction area - which will be joined back to the fulllist of pus in the following step
 puv_locked_out <- st_intersection(pu_geom_for_puvsp, agg_area) %>% # spatial join which assigns the polygon data (without geometry) to the point data (keeping point geometry data)

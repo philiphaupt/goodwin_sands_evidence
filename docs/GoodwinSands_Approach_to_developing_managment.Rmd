@@ -114,6 +114,7 @@ KEIFCA has had early (pre-planning) discussions with NE, MMO and two key stakeho
 
 ```{r timeline,echo = FALSE, message=FALSE}
 library(vistime)
+library(tidyverse)
 
 timeline_data_simple <- data.frame(
   #id = 1:nrow(timeline_data_simple),
@@ -166,6 +167,20 @@ timeline_data_simple <- data.frame(
     )
 )
 
+label_column <- "event"
+category_column <- "my_grps"
+
+ggplot_timeline <- ggplot(
+  data = timeline_data_simple,
+  aes(
+    x = start,
+    xend = end,
+    y = eval(as.name(label_column)),
+    yend = eval(as.name(label_column)),
+    colour = eval(as.name(category_column))
+  )
+)
+ggplot_timeline
 #vistime(timeline_data_simple)
 
 ```
