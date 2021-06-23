@@ -21,3 +21,9 @@ sab_and_mussels$id[sab_and_mussels$name == "myt"] <- 2 # assign id numbers based
 # separate the ross worma nd mussels
 # sab <- sab_and_mussels %>% filter(grepl("Sabellaria", taxonname))
 # mus <- sab_and_mussels %>% filter(grepl("Mytilus", taxonname))
+
+# plot map of habitat, Sabellaia and mussels
+mapview::mapview(list(sab_and_mussels, pu_sf),
+                 zcol = list("name","locked_in"),
+                 cex = list("count", NULL),
+                 burst = FALSE)

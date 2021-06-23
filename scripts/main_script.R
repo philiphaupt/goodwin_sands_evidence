@@ -47,10 +47,11 @@ source("./scripts/feature_full_names_for_plots.R", echo = T) #  more info about 
 # COST
 # 9. Vessel sightings
 source("./scripts/cost_prep_vessel_sightings_in_goodwin.R", echo=T) # NB! Warning: needs to be run inside script!
+# make sure conversion scripts reads from here: C:\Users\Phillip Haupt\Documents\GIS\COORDINATE_CONVERTER\coordinate_converter\scripts\ddm_to_dd_converter.R
 
 # Convert the coordinates DMds to dd and add to object boat_sightings
-source("./scripts/cost_prep_vessel_sightings_convert_coordinates.R", echo=T) # currently has to be read in manually - does not run from calling source?
-# rm(d_x, d_y, dd_x, dd_y, dms_x, dms_y, m_x, m_y, s_x, s_x_chr, s_y, s_y_chr, dms_x_2, dms_y_2)
+source("C:/Users/Phillip Haupt/Documents/my_functions/ddm_to_dd_converter.R", echo = T)#lo0ads function
+source("./scripts/cost_prep_vessel_sightings_convert_coordinates_v2.R", echo=T) # currently has to be read in manually - does not run from calling source?
 
 # plot vessel sightings
 source("./scripts/cost_prep_vessel_sightings_plot.R", echo = TRUE)

@@ -44,3 +44,6 @@ inshore_sab <- st_intersection(sab_and_mussels, KEIFCA) %>%
 
 1-inshore_sab/total_sab  
 
+
+# graph of proportion in KEIFCA and MMO per habitat type.
+

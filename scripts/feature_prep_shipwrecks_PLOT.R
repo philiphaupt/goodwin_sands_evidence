@@ -3,6 +3,7 @@
 
 # intersect with Goodwin Sands MCZ - needs to be WGS84 - to match projections:
 goodwin_shipwrecks_wgs84_sf <- sf::st_intersection(shipwrecks_with_add_dat_sf, goodwin_wgs84_sf)
+
 #goodwin_obstructions_wgs84_sf <- sf::st_intersection(obstructions_sf, goodwin_wgs84_sf)
 
 # summarise
@@ -115,3 +116,83 @@ goodwin_shipwrecks_wgs84_sf %>%
   theme(axis.text.x = element_text(color = "black", size = 14))+
   theme(axis.title.x = element_text(color = "black", size = 16)) +
   ggdark::dark_theme_bw()
+#--------------------------------
+# option2
+
+buffer_around_goodwin <- st_buffer(goodwin_utm31_sf, 5000)
+buffer_around_goodwin_wgs <- st_transform(buffer_around_goodwin, 4326)
+# intersect with Goodwin Sands MCZ - needs to be WGS84 - to match projections:
+goodwin_shipwrecks_wgs84_sf <- sf::st_intersection(shipwrecks_with_add_dat_sf, buffer_around_goodwin_wgs)
+
+
+# admiralty data
+adm_dir <- "C:/Users/Phillip Haupt/Documents/GIS/admirality_charts/Raster_Charts/20191002/Raster_Charts/RCx/No_Transformation/1828-0.tif"#"1892-0"
+library(raster)
+adm <- raster(adm_dir)
+
+# reteive info for projectoin:
+st_crs(goodwin_utm31_sf)
+res(adm)
+proj4string(adm)
+proj4string(as_Spatial(goodwin_utm31_sf))
+# reproject to allow crop
+adm_utm31 <- projectRaster(adm, crs = "+proj=utm +zone=31 +datum=WGS84 +units=m +no_defs")
+#crop to goodwin buffer
+adm_crop <- crop(adm_utm31, buffer_around_goodwin)
+plot(adm_crop)
+adm_goodwin <- mask(adm_crop, buffer_around_goodwin)
+plot(adm_goodwin)
+
+
+
+`Goodwin Sands MCZ` <- goodwin_wgs84_sf
+Shipwrecks <- goodwin_shipwrecks_wgs84_sf %>% relocate(NAME)
+`Aggregate extraction area` <- agg_area
+
+tmap_mode("view")
+(
+  gs_wrecks_map <-
+    tmap::tm_shape(Shipwrecks) +
+    tmap::tm_symbols(col = "#03c03c",
+                     size = 0.3,
+                     alpha = 0.8,) +
+    # aoi %>%
+    # transmute(Name = "") %>%
+    # tmap::tm_shape() +
+    # tmap::tm_fill("white", alpha = 0.01) +
+    # tmap::tm_shape(KEIFCA)+
+    # tmap::tm_polygons() +
+    tmap::tm_shape(`Goodwin Sands MCZ`) +
+    tmap::tm_borders(col = "cornflowerblue",
+                     alpha = 1,
+                     lwd = 2) +
+    #tmap::tm_fill(col = "")+
+    
+    #dplyr::select(NAME, DESCRIPTION, INFORMATION, source) %>% +
+    tmap::tm_shape(`Aggregate extraction area`) +
+    tm_polygons(col = "salmon",
+                alpha = 0.5)
+  # tm_shape(adm)+
+  # tm_raster()
+  # tm_rgb(r = 2,
+  #        g = 1,
+  #        b = 3)
+)
+  
+
+
+tmap_save(gs_wrecks_map, paste0("Goodwin_Sands_shipwrecks_",Sys.Date(),".html"))
+
+
+
+# EXPORT FOR GSCT----------
+coords <- Shipwrecks %>% 
+  st_cast("POINT") %>% 
+  sf::st_coordinates()
+prep_export_data <- Shipwrecks %>% 
+  st_drop_geometry() %>% 
+  cbind(coords)
+
+write_excel_csv(prep_export_data, "goodwin_buffered_shipwrecks_with_additional_data.csv")
+
+

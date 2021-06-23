@@ -17,7 +17,7 @@ boat_sightings <- readxl::read_xlsx("C:/Users/Phillip Haupt/Documents/vessel_sig
 
 print("The object created and used is: boat_sightings")
 
-#read in teh gear table to be able to decode the gears used
+#read in the gear table to be able to decode the gears used
 gear <- readxl::read_xlsx("C:/Users/Phillip Haupt/Documents/vessel_sightings/Vessel-sightings/data/gear_types_sightings.xlsx") %>% 
   dplyr::select(gear_code = `SFC Specific Code`,
                 gear_description = `SFC Specific Description`,

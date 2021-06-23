@@ -18,7 +18,9 @@ name <- c("sab", "myt", "subt_sand", "subt_mix_sed", "subt_coarse_sed", "mod_en_
 # SET TARGETS - the sequence corresponds with the sequence of the conservation features being read in - so it is important.
 # "prop" # numeric relative target for each feature (optional).
 # "amount" # numeric absolute target for each feature (optional)
-prop <- c(0.025,0.02, 0.2, 0, 0.2, 0.035) # target is zero for non-designated mixed subtidal sediment
+#prop <- c(0.025,0.02, 0.2, 0, 0.2, 0.035) # target is zero for non-designated mixed subtidal sediment
+prop <- c(0.5,0.5, 0.2, 0, 0.2, 0.5) # target is zero for non-designated mixed subtidal sediment
+
 
 # Convert the objects into a single dataframe with id numbers of conservation features next to their respective targets (proportions)
 spec <- as.data.frame(cbind(id, name, prop))

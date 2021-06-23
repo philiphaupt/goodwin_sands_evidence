@@ -1,5 +1,6 @@
 library(tidyverse)
 
+# make data-------------
 timeline_data <- data.frame(
   #id = 1:nrow(timeline_data_simple),
   event = c(
@@ -51,6 +52,7 @@ timeline_data <- data.frame(
   )
 )
 
+#arrange data------------------
 # sort data
 earliest_date_by_event <-
   timeline_data[timeline_data$start == ave(timeline_data$start, timeline_data$event, FUN =
@@ -67,11 +69,17 @@ timeline_data$event <-
   factor(timeline_data$event, levels = rev(as.character(unique(earliest_date_by_event$event))))
 timeline_data$my_grps <- as.factor(timeline_data$my_grps)
 
+#make sure that dates are dates!
+timeline_data$start <- as.Date(timeline_data$start)
+timeline_data$end <- as.Date(timeline_data$end)
+
+
 # beatification data
 label_column <- "event"
 category_column <- "my_grps"
 event_colours <- list("Engagement" = "#DC241f", "Research" = "#0087DC", "New research" = "#FDBB30")
 
+#plot data--------------------
 ggplot_timeline <- ggplot(
   data = timeline_data,
   aes(
@@ -83,12 +91,25 @@ ggplot_timeline <- ggplot(
   )
 )
 
-# plot the result
+# plot the result----------------------
 ggplot_timeline + 
   geom_segment(size=3) + 
+  scale_x_date(date_breaks = "2 months", date_labels = "%b-%y")+
   xlab("Date") + 
   scale_colour_manual(name = "Event type",values = event_colours) + 
   ylab("Events")
 
+#-interactive plot--------------------
 #https://ox-it.github.io/OxfordIDN_htmlwidgets/timeseries/timelines/
 library(plotly)
+ggplotly(
+  ggplot_timeline +
+    geom_segment(size = 3) +
+    scale_x_date(date_breaks = "2 months", date_labels = "%b-%y") +
+    xlab("Date") +
+    ylab("Events"),
+    scale_colour_manual(name = "Event type", values = event_colours),
+  tooltip = "x"
+)
+
+

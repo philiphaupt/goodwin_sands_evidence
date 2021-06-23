@@ -14,7 +14,7 @@ mapview::mapview(hab,zcol = "orig_hab")
 
 # plot map of habitat, Sabellaia and mussels
 mapview::mapview(list(hab, sab_and_mussels),
-                 zcol = list("orig_hab", NULL),
+                 zcol = list("orig_hab", "name"),
                  cex = list(NULL, "count"),
                  burst = TRUE)
 
