@@ -32,7 +32,7 @@ shipwreck_summary %>%
 # plot to check
 # needs KEIFCA boundaries, MCZ and aggeregate to have been read in already: see scripts in folder.
 # exploratory map:
-tmap::tmap_mode("plot")
+tmap::tmap_mode("view")
 aoi <- st_buffer(goodwin_utm31_sf, 7500)
 # plot map
 gs_wrecks_map <- tmap::tm_shape(aoi)+
@@ -48,12 +48,12 @@ gs_wrecks_map <- tmap::tm_shape(aoi)+
   tmap::tm_symbols(#shape = "source", 
                 size = 0.3,
                 alpha = 0.9, 
-                col = "source") +
-  tmap::tm_shape(agg_area) +
-  tm_polygons(col = "salmon",
-              alpha = 0.5) #+
+                col = "source")# +
+  #tmap::tm_shape(agg_area) +
+  #tm_polygons(col = "salmon",
+  #            alpha = 0.5) #+
 
-
+gs_wrecks_map
 
 # prep map for html output
 gs_wrecks_map <- tmap::tm_shape(aoi)+
@@ -68,14 +68,14 @@ gs_wrecks_map <- tmap::tm_shape(aoi)+
   goodwin_shipwrecks_wgs84_sf %>% 
   dplyr::select(NAME, DESCRIPTION, INFORMATION, source) %>% 
   tmap::tm_shape()+
-  tmap::tm_symbols(col = "source", 
+  tmap::tm_symbols(col = "NAME", 
     size = 0.3,
     alpha = 0.9, 
-    ) +
-  tmap::tm_shape(agg_area) +
-  tm_polygons(col = "salmon",
-              alpha = 0.5) #+
-
+    ) #+
+  #tmap::tm_shape(agg_area) +
+  #tm_polygons(col = "salmon",
+  #            alpha = 0.5) #+
+gs_wrecks_map
 
 tmap_save(gs_wrecks_map, "Goodwin_Sands_shipwrecks.html")
 

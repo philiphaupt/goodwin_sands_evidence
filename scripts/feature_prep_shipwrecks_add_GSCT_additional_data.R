@@ -26,4 +26,6 @@ prep_export_data <- shipwrecks_with_add_dat_sf %>%
   st_drop_geometry() %>% 
   cbind(coords)
 
-write_excel_csv(prep_export_data, "shipwrecks_with_additional_data.csv")
+
+print("shipwrecks_with_add_dat_sf is the output object")
+#write_excel_csv(prep_export_data, "shipwrecks_with_additional_data.csv")
