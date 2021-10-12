@@ -32,6 +32,8 @@ df <- geojsonsf::geojson_sf(url_json)
 agg_area <- df %>% dplyr::filter(Area_Number == 521) %>% 
   st_transform(st_crs(pu_geom_for_puvsp)) # make projections the same UTM31 N
 
+#st_write(agg_area, "aggeregate_extraction_areas.gpkg", layer = "aggeregate_extraction_area_goodwin_sands_mcz")
+
 # intersect with planning units - keeping ony id numbers for the planning units which intersect with the aggeregate extraction area - which will be joined back to the fulllist of pus in the following step
 puv_locked_out <- st_intersection(pu_geom_for_puvsp, agg_area) %>% # spatial join which assigns the polygon data (without geometry) to the point data (keeping point geometry data)
   st_drop_geometry() %>% 
