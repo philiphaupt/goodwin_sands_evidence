@@ -1,7 +1,7 @@
 # Solution
 library(tidyverse)
 library(prioritizr)
-library("gurobi")
+#library("gurobi")
 library("slam")
 library("Rsymphony")
 

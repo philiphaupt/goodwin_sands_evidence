@@ -1,7 +1,7 @@
 # PROBLEM DEFINTION -------------------------------------------------------
 library(tidyverse)
 library(prioritizr)
-library("gurobi")
+#library("gurobi")
 library("slam")
 library("Rsymphony")
 
@@ -46,23 +46,23 @@ p_min_set <- problem(pu_no_geom_lo_added,cost_column = "cost", features = spec, 
 # MAX COVER
 # Maximum cover objective: Represent at least one instance of as many features as possible within a given budget (Church et al. 1996).
 
-p_max_cover <- problem(x = pu_no_geom, features = spec, rij = puvf , cost_column = "cost") %>% # define the base in put data: x is the planning units, features are the species or habitats, and we define the cost column which we may relate to fishing activity or aggeregate dredging; not that locked in and out can also be used
-  add_max_cover_objective(1390) %>% # define the objective, e.g. minimum set while achieving all targets, maximum coverage - see https://cran.r-project.org/web/packages/prioritizr/vignettes/prioritizr.html - about a 1/4 the way down the page for may more options.  All conservation planning problems involve minimizing or maximizing some kind of objective. Most relevant ones are: 
-  add_relative_targets(spec$prop) %>% 
-  add_gurobi_solver(gap = 0, time_limit = 120, verbose = TRUE) 
-
-# MAX FEATURES OBJECTIVES
-# Maximum features objective: Fulfill as many targets as possible while ensuring that the cost of the solution does not exceed a budget (inspired by Cabeza & Moilanen 2001). This object is similar to the maximum cover objective except that we have the option of later specifying targets for each feature. In practice, this objective is more useful than the maximum cover objective because features often require a certain amount of area for them to persist and simply capturing a single instance of habitat for each feature is generally unlikely to enhance their long-term persistence.
-p_max_feat <- problem(x = pu_no_geom, features = spec, rij = puvf , cost_column = "cost") %>% # define the base in put data: x is the planning units, features are the species or habitats, and we define the cost column which we may relate to fishing activity or aggeregate dredging; not that locked in and out can also be used
-  add_max_features_objective(1390) %>% 
-  add_relative_targets(spec$prop)  %>% 
-  add_gurobi_solver(gap = 0, time_limit = 120, verbose = TRUE)
-
-# MIN SHORTFALL
-# Minimum shortfall objective: Minimize the shortfall for as many targets as possible while ensuring that the cost of the solution does not exceed a budget. In practice, this objective useful when there is a large amount of left-over budget when using the maximum feature representation objective and the remaining funds need to be allocated to places that will enhance the representation of features with unmet targets.
-p_min_shortfall <- problem(x = pu_no_geom, features = spec, rij = puvf , cost_column = "cost") %>% # define the base in put data: x is the planning units, features are the species or habitats, and we define the cost column which we may relate to fishing activity or aggeregate dredging; not that locked in and out can also be used
-  add_min_shortfall_objective(budget = 1390) %>% 
-  add_relative_targets(spec$prop) %>% 
-  add_gurobi_solver(gap = 0, time_limit = 120, verbose = TRUE)
+# p_max_cover <- problem(x = pu_no_geom, features = spec, rij = puvf , cost_column = "cost") %>% # define the base in put data: x is the planning units, features are the species or habitats, and we define the cost column which we may relate to fishing activity or aggeregate dredging; not that locked in and out can also be used
+#   add_max_cover_objective(1390) %>% # define the objective, e.g. minimum set while achieving all targets, maximum coverage - see https://cran.r-project.org/web/packages/prioritizr/vignettes/prioritizr.html - about a 1/4 the way down the page for may more options.  All conservation planning problems involve minimizing or maximizing some kind of objective. Most relevant ones are: 
+#   add_relative_targets(spec$prop) %>% 
+#   add_gurobi_solver(gap = 0, time_limit = 120, verbose = TRUE) 
+# 
+# # MAX FEATURES OBJECTIVES
+# # Maximum features objective: Fulfill as many targets as possible while ensuring that the cost of the solution does not exceed a budget (inspired by Cabeza & Moilanen 2001). This object is similar to the maximum cover objective except that we have the option of later specifying targets for each feature. In practice, this objective is more useful than the maximum cover objective because features often require a certain amount of area for them to persist and simply capturing a single instance of habitat for each feature is generally unlikely to enhance their long-term persistence.
+# p_max_feat <- problem(x = pu_no_geom, features = spec, rij = puvf , cost_column = "cost") %>% # define the base in put data: x is the planning units, features are the species or habitats, and we define the cost column which we may relate to fishing activity or aggeregate dredging; not that locked in and out can also be used
+#   add_max_features_objective(1390) %>% 
+#   add_relative_targets(spec$prop)  %>% 
+#   add_gurobi_solver(gap = 0, time_limit = 120, verbose = TRUE)
+# 
+# # MIN SHORTFALL
+# # Minimum shortfall objective: Minimize the shortfall for as many targets as possible while ensuring that the cost of the solution does not exceed a budget. In practice, this objective useful when there is a large amount of left-over budget when using the maximum feature representation objective and the remaining funds need to be allocated to places that will enhance the representation of features with unmet targets.
+# p_min_shortfall <- problem(x = pu_no_geom, features = spec, rij = puvf , cost_column = "cost") %>% # define the base in put data: x is the planning units, features are the species or habitats, and we define the cost column which we may relate to fishing activity or aggeregate dredging; not that locked in and out can also be used
+#   add_min_shortfall_objective(budget = 1390) %>% 
+#   add_relative_targets(spec$prop) %>% 
+#   add_gurobi_solver(gap = 0, time_limit = 120, verbose = TRUE)
 
 
