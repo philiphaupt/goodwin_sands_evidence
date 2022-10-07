@@ -54,7 +54,7 @@ sol_plot_dat %>%
    facet_wrap(~feature_name) +
    ggdark::dark_theme_gray() +
    ggtitle("Proportion of habitat-features in solution & target set (red dashed line)")+
-   labs(x = "Status in solution", y = "Proportion of area or amount for each habitat or species in planning area")+
+   labs(x = "Status in solution", y = "Target achievement for each habitat or species")+
    theme(legend.position = "none")
 
 

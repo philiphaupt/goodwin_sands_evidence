@@ -9,7 +9,7 @@ names(dat_for_conversion) <- tolower(names(dat_for_conversion))
 # run for column lat and lon
 source("C:/Users/Phillip Haupt/Documents/my_functions/ddm_to_dd_converter.R", echo = T)#lo0ads function
 # Get the names for the columns so that we can add the correct x or y label to the output columns.
-conversion_fn_output <- apply( dat_for_conversion[,grep("lat", colnames(dat_for_conversion))| grep("lon", colnames(dat_for_conversion))] , 2 , conversion_fn )
+conversion_fn_output <- apply( dat_for_conversion[,grep("lat", colnames(dat_for_conversion))| grep("lon", colnames(dat_for_conversion))] , 2 , dms_to_dd_fn )
 
 # Create outputs
 # R object: create  a new object as a tibble (not nested list)

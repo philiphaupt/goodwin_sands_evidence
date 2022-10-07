@@ -1,11 +1,11 @@
 # spatial planning scenario 1 MAIN script - calling the helper scripts in the correct sequence
 
-# # List all the files inthe scripts directory
+# # List all the files in the scripts directory
 # dir("./scripts") # all the files in 
 # file.rename("./scripts/solution_map_prep_goodwin_mcz.R", "./scripts/map_utelities_prep_goodwin_mcz.R")
-
+rm(list = ls())
 # PREP
-# Read in mapping utelity files
+# Read in mapping utility files
 source("./scripts/map_utelities_prep_KEIFCA_district_boundaries.R", echo=T) #KEIFCA boundaries
 source("./scripts/map_utelities_prep_goodwin_mcz.R", echo=T) # MCZ
 
@@ -19,25 +19,27 @@ source("./scripts/pu_prep_locked_out.R", echo=T)
 
 # CONSERVATION FEATURES
 # 3. Feature prep - 1 Sabellaria and Mussels (CEFAS 2014 survey)
-source("scripts/feature_prep_sabellaria_and_mussels.R", echo=T) # included
- 
+source("./scripts/feature_prep_sabellaria_and_mussels.R", echo=T) # included
+source("./scripts/feature_prep_mapped_sabellaria_alternative.R")#")
 # 4. Feature prep -2 Habitat map (Natural England)
 source("./scripts/feature_prep_habitat_map.R", echo=T) # included
 
 
 #--------
-# NOT INCLUDED IN THE PLAN YET - see hte list of features that still needs including
+# NOT INCLUDED IN THE PLAN YET - see the list of features that still needs including
 # 5. Feature prep - 3 shipwrecks (OS maps - hydrographic office)
-source("./scripts/feature_prep_shipwrecks.R", echo=T) # not included
-source("./scripts/feature_prep_shipwrecks_add_GSCT_additional_data.R", echo=T) # not included
+# source("./scripts/feature_prep_shipwrecks.R", echo=T) # not included
+# source("./scripts/feature_prep_shipwrecks_add_GSCT_additional_data.R", echo=T) # not included
 # 6. Feature prep - Fish data NS IBTS (ICES DATRAS 2015 - 2020 included)
 # source("./scripts/feature_prep_fish_NS_IBTS_survey.R", echo=T) # Warning: slow, large data set, long processing time # not included
 #----------
 
-# 7. PUVSP
-# prepare PU vs Feature matrix
+# 7. PUVSP (create planing units using one of two approaches - 1 with sabellaria ,mapped out polygons, 2, sabellaria points)
+if("sab_polys" %in% ls()){
+  source("./scripts/puvsp_prep_with_sab_polys.R", echo=T)
+} else {
 source("./scripts/puvsp_prep.R", echo=T)
-
+}
 # TARGETS
 # 8. Set conservation target for habitats and species & other features
 source("./scripts/targets_set.R", echo=T)
@@ -47,7 +49,7 @@ source("./scripts/feature_full_names_for_plots.R", echo = T) #  more info about 
 # COST
 # 9. Vessel sightings
 source("./scripts/cost_prep_vessel_sightings_in_goodwin.R", echo=T) # NB! Warning: needs to be run inside script!
-# make sure conversion scripts reads from here: C:\Users\Phillip Haupt\Documents\GIS\COORDINATE_CONVERTER\coordinate_converter\scripts\ddm_to_dd_converter.R
+# make sure conversion scripts reads from here: C:/Users/Phillip Haupt/Documents/GIS/COORDINATE_CONVERTER/coordinate_converter/scripts/ddm_to_dd_converter.R
 
 # Convert the coordinates DMds to dd and add to object boat_sightings
 source("C:/Users/Phillip Haupt/Documents/my_functions/ddm_to_dd_converter.R", echo = T)#lo0ads function

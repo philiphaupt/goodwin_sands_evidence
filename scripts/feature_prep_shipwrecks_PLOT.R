@@ -1,8 +1,34 @@
 # restrcit shipwrecks to Goodwin Sands, plot and summarise
 
-
 # intersect with Goodwin Sands MCZ - needs to be WGS84 - to match projections:
 goodwin_shipwrecks_wgs84_sf <- sf::st_intersection(shipwrecks_with_add_dat_sf, goodwin_wgs84_sf)
+
+#------------------------------------
+
+# write goodwins shipwrecks to file
+goodwin_shipwrecks_wgs84_sf <- goodwin_shipwrecks_wgs84_sf %>% 
+  #select(-fid) %>% 
+  # mutate(fid = gsub(x = goodwin_shipwrecks_wgs84_sf$fid, "MTF_OBSTRUCTIONS.", "")) %>% #as.character(rownames(goodwin_shipwrecks_wgs84_sf))) %>% 
+  # mutate(fid = if(is.na(fid)){
+  #   max(as.numeric(goodwin_shipwrecks_wgs84_sf$fid), na.rm = TRUE)+row_number()
+  # })
+  mutate(fid = as.integer(row_number())) %>% 
+  #relocate(fid) %>% 
+  select(name = NAME) %>% st_sf()
+
+goodwin_shipwrecks_wgs84_sf <- st_set_crs(goodwin_shipwrecks_wgs84_sf,  st_crs(goodwin_wgs84_sf)) %>% st_sf()
+ggplot()+
+  geom_sf(data = goodwin_shipwrecks_wgs84_sf)
+
+sf::st_write(goodwin_shipwrecks_wgs84_sf, 
+         dsn = "goodwin_shipwrecks_wgs84.gpkg", 
+         layer = "shipwrecks_goodwin_sands",
+         fid_column_name = "fid",
+         delete_dsn = TRUE,
+         delete_layer = TRUE
+         )
+
+#---------------------------------------------
 
 #goodwin_obstructions_wgs84_sf <- sf::st_intersection(obstructions_sf, goodwin_wgs84_sf)
 

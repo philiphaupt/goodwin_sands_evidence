@@ -44,3 +44,6 @@ tmap::tm_shape(aoi)+
 # pu_sp <- as(pu_sf, 'Spatial')
 # spplot(pu_sp, "cost", main = "Planning unit cost",
 #        xlim = c(-0.1, 1.1), ylim = c(-0.1, 1.1))
+ggplot()+
+  geom_sf(data = pu)+
+  geom_sf(data = sightings_goodwin, aes(col = gear_description, size = 2))

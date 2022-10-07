@@ -4,7 +4,7 @@ library(mapview)
  
 # plot solution
 # read in for plotting
-KEIFCA_boundary_line <- st_read("C:/Users/Phillip Haupt/Documents/GIS/6M_12M_from_territorial_sea_baseline_5_Jun_20_and_1983/KEIFCA_6NM.GPKG", layer = "KEIFCA_bounbdary_line")
+KEIFCA_boundary_line <- st_read("C:/Users/Phillip Haupt/Documents/GIS/gis_data/6M_12M_from_territorial_sea_baseline_5_Jun_20_and_1983/KEIFCA_6NM.GPKG", layer = "KEIFCA_bounbdary_line")
 
 sol_sf <- s_min_set_sf#s_max_feat_sf
 # SOLUTIONS --------------------------------------------------------
@@ -45,16 +45,16 @@ mapview(sol_sf["solution_1"],
 sol_only <- sol_sf %>% dplyr::filter(solution_1 == 1)
 
 # plot solution over the features
-mapview::mapview(list(hab, KEIFCA_boundary_line, sol_only, sab_and_mussels, agg_area),#KEIFCA read in on vessel_sightings_in_goodwin.R script
-                 zcol = list("orig_hab","IFCA", "solution_1", "taxonname", "FID"),
-                 alpha.regions = list(0.7,0, 0, 1, 0),
-                 alpha = list(0.1, 0.7, 1, 0.1, 1),
-                 cex = list(NULL, NULL, NULL, "count", NULL),
-                 color = list("grey", "black", "darkgreen", "black", "black"),
-                 lwd = list(1, 2, 3, 1, 2),
-                 burst = TRUE,
-                 legend = TRUE,
-                 label = hab$orig_hab)
+# mapview::mapview(list(hab, KEIFCA_boundary_line, sol_only, sab_polys, mussels, agg_area),#KEIFCA read in on vessel_sightings_in_goodwin.R script
+#                  zcol = list("orig_hab","IFCA", "solution_1","Sabellaria_reef", "taxonname", "Company"),
+#                  alpha.regions = list(0.7,0, 0, 0.5, 1, 0),
+#                  alpha = list(0.1, 0.7, 1,0.5, 0.1, 1),
+#                  cex = list(NULL, NULL, NULL, NULL,"count", NULL),
+#                  color = list("grey", "black", "darkgreen","black" ,"black", "black"),
+#                  lwd = list(1, 2, 3,1, 1, 2),
+#                  burst = TRUE,
+#                  legend = TRUE,
+#                  label = hab$orig_hab)
 
 #batch run with SPF, BLM, NREPS, NITNS changing
 # spf <- c(30,25)

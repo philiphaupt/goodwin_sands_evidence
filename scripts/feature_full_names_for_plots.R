@@ -6,3 +6,5 @@ feature_full_names <- c("Sabellaria", "Mytilus", "Subtidal sand", "Subtidal mixe
   as_tibble() %>% rename(feature_name = value)
 feature_full_names$name <- spec$name
 feature_full_names <- left_join(feature_full_names, spec, by = "name")
+
+print(feature_full_names)

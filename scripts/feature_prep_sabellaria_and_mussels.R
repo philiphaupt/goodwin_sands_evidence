@@ -15,6 +15,8 @@ sab_and_mussels$fid <- sab_and_mussels$id # rename column "id" to "fid",becuase 
 sab_and_mussels$id[sab_and_mussels$name == "sab"] <- 1 # assign id numbers based on species names that match the SPEC file
 sab_and_mussels$id[sab_and_mussels$name == "myt"] <- 2 # assign id numbers based on species names that match the SPEC file
 
+#create mussels only point file
+mussels <- sab_and_mussels %>% filter(taxonname %in% c("Mytilus edulis", "Mytilidae (juv.)"))
 
 
 # drop these lines - dont need to separate them.
@@ -22,8 +24,14 @@ sab_and_mussels$id[sab_and_mussels$name == "myt"] <- 2 # assign id numbers based
 # sab <- sab_and_mussels %>% filter(grepl("Sabellaria", taxonname))
 # mus <- sab_and_mussels %>% filter(grepl("Mytilus", taxonname))
 
-# plot map of habitat, Sabellaia and mussels
-mapview::mapview(list(sab_and_mussels, pu_sf),
-                 zcol = list("name","locked_in"),
-                 cex = list("count", NULL),
-                 burst = FALSE)
+# plot map of habitat, Sabellaria and mussels
+# mapview::mapview(list(sab_and_mussels, pu_sf),
+#                  zcol = list("name","locked_in"),
+#                  cex = list("count", NULL),
+#                  burst = FALSE)
+
+# on a map
+ggplot2::ggplot()+
+  geom_sf(data = pu)+
+  geom_sf(data = sab_and_mussels, aes(col = name, size = count))
+

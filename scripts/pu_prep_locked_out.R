@@ -6,9 +6,11 @@ library(geojsonsf)
 
 # Read in the aggeregate areas from webserver: (see further below how to read in teh file from hard disc if this fails)
 # Get the most up to date version from the Crown EState ArcGIS webserver
-url_json <- "https://opendata.arcgis.com/datasets/d734d753d04649e2a7e1c64b820a5df9_0.geojson"
-df <- geojsonsf::geojson_sf(url_json)
+# url_json <- "https://opendata.arcgis.com/datasets/d734d753d04649e2a7e1c64b820a5df9_0.geojson"
+# df <- geojsonsf::geojson_sf(url_json)
 
+
+                        
 #-----------------
 # From Arcgis server:
 # library(devtools)
@@ -19,21 +21,23 @@ df <- geojsonsf::geojson_sf(url_json)
 #df <- esri2sf(url, where = where)
 #-----------------------
 
+#st_crs(pu_geom_for_puvsp)
+# agg_area <- df %>% dplyr::filter(Area_Number == 521) %>% 
+#   st_transform(st_crs(pu_geom_for_puvsp)) # make projections the same UTM31 N
+# 
+# #st_write(agg_area, "aggeregate_extraction_areas.gpkg", layer = "aggeregate_extraction_area_goodwin_sands_mcz")
 
 
-#  Read in aggeregate areas:
+#  Read in aggregate areas:
 
 # FROM FILE ON HARD DISC:
-# agg_area <- read_sf("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/Offshore_Minerals_Aggregates_Site_Agreements/Offshore_Minerals_Aggregates_Site_Agreements.shp") %>% 
-#   dplyr::filter(Area_Numbe == 521)
-# plot(agg_area["geometry"])
+agg_area <- read_sf("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/Offshore_Minerals_Aggregates_Site_Agreements/Offshore_Minerals_Aggregates_Site_Agreements.shp") %>%
+  dplyr::filter(Area_Numbe == 521)
+plot(agg_area["geometry"])
 
-#st_crs(pu_geom_for_puvsp)
-agg_area <- df %>% dplyr::filter(Area_Number == 521) %>% 
-  st_transform(st_crs(pu_geom_for_puvsp)) # make projections the same UTM31 N
-
-#st_write(agg_area, "aggeregate_extraction_areas.gpkg", layer = "aggeregate_extraction_area_goodwin_sands_mcz")
-
+# reproject
+agg_area <- agg_area %>% 
+     st_transform(st_crs(pu_geom_for_puvsp))
 # intersect with planning units - keeping ony id numbers for the planning units which intersect with the aggeregate extraction area - which will be joined back to the fulllist of pus in the following step
 puv_locked_out <- st_intersection(pu_geom_for_puvsp, agg_area) %>% # spatial join which assigns the polygon data (without geometry) to the point data (keeping point geometry data)
   st_drop_geometry() %>% 
