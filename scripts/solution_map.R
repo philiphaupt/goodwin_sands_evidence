@@ -1,6 +1,6 @@
 # AIM: Plot the solution on a map to visualise the result.
 library(sf)
-library(mapview)
+#library(mapview)
  
 # plot solution
 # read in for plotting
@@ -37,8 +37,8 @@ ggplot2::ggplot(sol_sf, aes(fill = solution_label))+
 # )
 
 
-mapview(sol_sf["solution_1"], 
-        legend = TRUE)
+# mapview(sol_sf["solution_1"], 
+#         legend = TRUE)
 
 
 # only solution
@@ -66,3 +66,4 @@ sol_only <- sol_sf %>% dplyr::filter(solution_1 == 1)
 #              spec="spec_non_st.csv", 
 #              bound="bound_non_st.csv",
 #              spf=spf, blm=blm, nreps=nreps, nitns=nitns, scenname="Full")
+

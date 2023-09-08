@@ -1,7 +1,7 @@
 # Read in conservation features: Habitat map and Sabellaria and mussels, and process these ready for combining into the planning units (pu)
 library(sf)
 library(tidyverse)
-library(mapview)
+#library(mapview)
 
 
 # FEATURES (Read in)

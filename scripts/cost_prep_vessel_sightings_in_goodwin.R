@@ -1,6 +1,6 @@
 # Aim: Prepare COST layer from KEIFCA vessel sightings data
-# Read in sighitngs, convert to sf
-library(tmap)
+# Read in sightings, convert to sf
+#library(tmap)
 library(sf)
 library(tidyverse)
 library(readxl)
@@ -8,7 +8,7 @@ library(readxl)
 
 
 # Read in the sightings data
-boat_sightings <- readxl::read_xlsx("C:/Users/Phillip Haupt/Documents/vessel_sightings/Vessel-sightings/data/Boat_sightings_20150101_to_20200601.xlsx", sheet = "Sheet1") %>% #C:/Users/Phillip Haupt/OneDrive - Kent & Essex Inshore Fisheries and Conservation Authority/
+boat_sightings <- readxl::read_xlsx("C:/Users/Phillip Haupt/Documents/vessel_sightings/Vessel-sightings/data/VesselSightings_Data.xlsx", sheet = "Qry_Boat") %>% #C:/Users/Phillip Haupt/OneDrive - Kent & Essex Inshore Fisheries and Conservation Authority/
   filter(!is.na(Lattitude)) %>% 
   filter(Lattitude != 0) %>% 
   filter(!is.na(Longitude)) %>% 

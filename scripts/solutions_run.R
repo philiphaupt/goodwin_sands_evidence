@@ -1,7 +1,6 @@
 # Solution
-library(tidyverse)
-library(prioritizr)
-#library("gurobi")
+library("tidyverse")
+library("prioritizr")
 library("slam")
 library("Rsymphony")
 
@@ -9,7 +8,7 @@ library("Rsymphony")
 
 # SOLUTIONS ---------------------------------------------------------------
 # SOLUTIONS: MIN SET
-s_min_set <- prioritizr::solve(p_min_set)
+s_min_set <- prioritizr::solve.ConservationProblem(p_min_set)
 s_min_set_sf <- left_join(pu_geom_for_puvsp, s_min_set, by = c("puid" = "id"))
 
 # # MAX COVER

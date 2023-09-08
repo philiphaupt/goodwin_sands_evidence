@@ -1,3 +1,4 @@
+library(tidyverse)
 library(sf)
 
 #  Prepare KEFICA 6 NM district boundaries
@@ -10,6 +11,12 @@ KEIFCA <- st_read("C:/Users/Phillip Haupt/Documents/GIS/gis_data/6M_12M_from_ter
 #st_layers("C:/Users/Phillip Haupt/Documents/GIS/gis_data/6M_12M_from_territorial_sea_baseline_5_Jun_20_and_1983/KEIFCA_6NM.GPKG")
 st_crs(KEIFCA)
 plot(KEIFCA["geom"])
+
+
+# Plot Goodwin Sands MCZ inside KEIFCA district
+ggplot(data = KEIFCA)+
+  geom_sf(col = "blue", fill ="cornflowerblue")+
+  labs(title = "KEIFCA District")
 
 
 

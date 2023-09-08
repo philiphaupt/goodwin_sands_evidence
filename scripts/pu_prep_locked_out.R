@@ -55,14 +55,14 @@ pu_no_geom_lo_added <- pu_no_geom %>% left_join(puv_locked_out, by = c("id" = "p
   mutate(locked_out = lo) %>% 
   dplyr::select(-c(lock, lo))
 
-tmap_options(bg.color = "black", legend.text.color = "white")
-tmap_mode("plot")
+#tmap_options(bg.color = "black", legend.text.color = "white")
+#tmap_mode("plot")
 # on a map
-pu %>% dplyr::select(id) %>% 
-  left_join(pu_no_geom_lo_added, by = c("id" = "id")) %>% 
-  tmap::tm_shape() +
-  tm_polygons(col = "locked_out",palette=c("TRUE"='yellow', "FALSE"='cornflowerblue')) +
-  #tm_legend(title = "Areas locked out")+
-  tm_shape(agg_area)+
-  tm_polygons(col = "black")+
-  tm_basemap()
+# pu %>% dplyr::select(id) %>% 
+#   left_join(pu_no_geom_lo_added, by = c("id" = "id")) %>% 
+#   tmap::tm_shape() +
+#   tm_polygons(col = "locked_out",palette=c("TRUE"='yellow', "FALSE"='cornflowerblue')) +
+#   #tm_legend(title = "Areas locked out")+
+#   tm_shape(agg_area)+
+#   tm_polygons(col = "black")+
+#   tm_basemap()

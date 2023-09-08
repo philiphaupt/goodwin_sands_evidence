@@ -20,19 +20,19 @@ sightings_goodwin <- left_join(sightings_goodwin, gear, by  = c('gear' = 'gear_c
 # convert main gear to factor for plotting purposes
 sightings_goodwin$main_gear  <- as.factor(sightings_goodwin$main_gear)
 
-tmap_mode("plot")
-# plot map
-tmap::tm_shape(aoi)+
-  tmap::tm_fill("white", alpha = 0.01)+
-  tmap::tm_shape(KEIFCA)+
-  tmap::tm_polygons() +
-  tmap::tm_shape(goodwin_utm31_sf)+
-  tmap::tm_fill(col = "blue", alpha = 0.3) +
-  tmap::tm_shape(sightings_goodwin)+
-  tmap::tm_dots(col = "main_gear", title = "Gear type", palette=c(Potting='cyan', Trawling = 'yellow', Angling = 'blue'),stretch.palette = FALSE, size = 0.1, jitter = 0.1)  
-  # tm_layout(
-  #   "Gear type",
-  #   legend.title.size=1,
+# tmap_mode("plot")
+# # plot map
+# tmap::tm_shape(aoi)+
+#   tmap::tm_fill("white", alpha = 0.01)+
+#   tmap::tm_shape(KEIFCA)+
+#   tmap::tm_polygons() +
+#   tmap::tm_shape(goodwin_utm31_sf)+
+#   tmap::tm_fill(col = "blue", alpha = 0.3) +
+#   tmap::tm_shape(sightings_goodwin)+
+#   tmap::tm_dots(col = "main_gear", title = "Gear type", palette=c(Potting='cyan', Trawling = 'yellow', Angling = 'blue'),stretch.palette = FALSE, size = 0.1, jitter = 0.1)  
+#   # tm_layout(
+#   #   "Gear type",
+#   #   legend.title.size=1,
   #   legend.text.size = 0.6,
   #   legend.position = c("right","bottom"),
   #   legend.bg.color = "white",

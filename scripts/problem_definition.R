@@ -1,10 +1,10 @@
 # PROBLEM DEFINTION -------------------------------------------------------
-library(tidyverse)
-library(prioritizr)
-#library("gurobi")
+library("tidyverse")
+library("prioritizr")
 library("slam")
 library("Rsymphony")
-
+#library("Rcpp")
+#library("gurobi")
 
 #  Background information:
 #https://cran.r-project.org/web/packages/prioritizr/prioritizr.pdf

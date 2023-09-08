@@ -11,7 +11,7 @@ source("./scripts/map_utelities_prep_goodwin_mcz.R", echo=T) # MCZ
 
 # PLANNING UNITS
 # 1. Prepare the planning units 1 - read in , assign baseline cost, provide fields/columns for inserting locked in locked out info & repeat this so that there are options with and without geometry, and one with only geometry and puid
-source("./scripts/pu_hex_prepare.R", echo=T)
+file.edit("./scripts/pu_hex_prepare.R", echo=T)
 
 # 2. Prepare planning units 2 - assign locked out areas
 source("./scripts/pu_prep_locked_out.R", echo=T)
@@ -55,6 +55,9 @@ source("./scripts/cost_prep_vessel_sightings_in_goodwin.R", echo=T) # NB! Warnin
 source("C:/Users/Phillip Haupt/Documents/my_functions/ddm_to_dd_converter.R", echo = T)#lo0ads function
 source("./scripts/cost_prep_vessel_sightings_convert_coordinates_v2.R", echo=T) # currently has to be read in manually - does not run from calling source?
 
+# Remove non-working sightings
+source("./scripts/keep_only_working_sightings.R")
+
 # plot vessel sightings
 source("./scripts/cost_prep_vessel_sightings_plot.R", echo = TRUE)
 
@@ -70,5 +73,5 @@ source("./scripts/solutions_run.R", echo=T)
 source("./scripts/solution_map.R", echo=T) 
 
 # 13. solution analysis
-file.edit("./scripts/solution_analyse_cost_target_achievement.R", echo=T)
+source("./scripts/solution_analyse_cost_target_achievement.R", echo=T)
 

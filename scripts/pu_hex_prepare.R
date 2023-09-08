@@ -1,21 +1,27 @@
 library(sf)
 library(tidyverse)
-library(tmap)
-
 
 # DATA PREP ----------------------------------------
+# Note planning units were created in QGIS before hand. See project on server.
 
 # PLANNING UNITS 
-# read in planning units (hexagons ccreated earlier in QGIS - can be done like this: https://r-spatial.github.io/sf/reference/st_make_grid.html)
-pu <- sf::st_read("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/goodwin_pu_utm31n.gpkg")
+  # read in planning units (hexagons created earlier in QGIS - can be done like this: https://r-spatial.github.io/sf/reference/st_make_grid.html)
+#pu <- sf::st_read("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/goodwin_pu_utm31n.gpkg")
+source("./scripts/make_planning_units.R")
 
+# keep only planning units that  intersect with Goodwin Sands MCZ
+file.edit("./scripts/keep_pu_in_Goodwin.R")
 
+# define inside and outside planning units - this allows creating planning units inside the area of KEIFCA Goodwin plus a bit extra into the MMO territory, to allow
+file.edit("./scripts/define_inside_outside_pus.R", echo = TRUE)
+
+# Lock in and lock out planning units
 pu$locked_in <- as.logical(FALSE) # can be used to predefine planning units that we want to FORCE into the selection.
 pu$locked_out <- as.logical(FALSE)
 
 # pu cost parameter
-pu$cost <- 8 # arbitrary value assigned at this opint. Replace this with Fishing cost using sightings data. It should be above zero otherwise solutons will include ALL planning units with no prioritization.
-# Note plannin gunits wer created in QGIS before hand. See project on server.
+pu$cost <- 8 # arbitrary value assigned at this point. Replace this with Fishing cost using sightings data. It should be above zero otherwise solutons will include ALL planning units with no prioritization.
+
 
 # lock out areas inside and outside 6 nm
 pu$locked_out[pu$inside_outside_6 == "outside"] <- TRUE # exclude planning units in MMO area
@@ -46,9 +52,9 @@ pu_sf <-  pu %>%  st_cast("POLYGON")
 pu_no_geom <-  pu %>% sf::st_drop_geometry()
 
 #View planning units
-tmap::tmap_mode("view")
-tmap::tm_shape(pu_sf)+
-  tmap::tm_polygons(col = "white", alpha = 0.1)
+# tmap::tmap_mode("view")
+# tmap::tm_shape(pu_sf)+
+#   tmap::tm_polygons(col = "white", alpha = 0.1)
 
 
 
