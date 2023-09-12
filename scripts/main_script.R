@@ -1,9 +1,18 @@
 # spatial planning scenario 1 MAIN script - calling the helper scripts in the correct sequence
+rm(list = ls())
+# USER INPUT PARAMETERS
+# Planning Units
+sqaures = FALSE # shape of planning units
+pu_cell_size = 666.859 #  If hexagons 666.859 is roughly 1 km^2 surface area. 
+
+# Planning units adjacency to MMO district
+# Distance to buffer around KEIFCA district
+keifca_buffer_distance = 800 # this ensures that adjacent MMO planning units can be selected in or out.
 
 # # List all the files in the scripts directory
 # dir("./scripts") # all the files in 
 # file.rename("./scripts/solution_map_prep_goodwin_mcz.R", "./scripts/map_utelities_prep_goodwin_mcz.R")
-rm(list = ls())
+
 # PREP
 # Read in mapping utility files
 source("./scripts/map_utelities_prep_KEIFCA_district_boundaries.R", echo=T) #KEIFCA boundaries

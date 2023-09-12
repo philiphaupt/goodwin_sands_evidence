@@ -21,7 +21,7 @@ rm(mcz_etrs89_sf, goodwin_etrs89_sf) # no longer required
 # plot Goodwin Sands MCZ
 ggplot(data = KEIFCA)+
   geom_sf(col = "blue", fill ="cornflowerblue")+
-  labs(title = "KEIFCA District")+
+  labs(title = "KEIFCA District & Goodwin Sands MCZ in green")+
 geom_sf(data = goodwin_wgs84_sf, col = "Forestgreen", fill = "Olivedrab", alpha = 0.5)
 
   

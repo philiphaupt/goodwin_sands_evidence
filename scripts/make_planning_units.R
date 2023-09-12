@@ -11,7 +11,7 @@ pu_hex = (st_make_grid(
   what = "polygons",
   square = FALSE,
   flat_topped = TRUE
-))
+)) %>% st_sf()
 
 
 

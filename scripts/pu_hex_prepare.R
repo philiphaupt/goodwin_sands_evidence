@@ -10,14 +10,13 @@ library(tidyverse)
 source("./scripts/make_planning_units.R")
 
 # keep only planning units that  intersect with Goodwin Sands MCZ
-file.edit("./scripts/keep_pu_in_Goodwin.R")
+source("./scripts/keep_pu_in_Goodwin.R")
 
 # define inside and outside planning units - this allows creating planning units inside the area of KEIFCA Goodwin plus a bit extra into the MMO territory, to allow
-file.edit("./scripts/define_inside_outside_pus.R", echo = TRUE)
+source("./scripts/define_inside_outside_pus.R", echo = TRUE)
 
-# Lock in and lock out planning units
-pu$locked_in <- as.logical(FALSE) # can be used to predefine planning units that we want to FORCE into the selection.
-pu$locked_out <- as.logical(FALSE)
+# intersecting planning units with inside KEIFCA boudnary, and those to be inclued outside KEIFCA boundary. 
+file.edit("./scripts/earmark_pus.R")
 
 # pu cost parameter
 pu$cost <- 8 # arbitrary value assigned at this point. Replace this with Fishing cost using sightings data. It should be above zero otherwise solutons will include ALL planning units with no prioritization.
