@@ -1,33 +1,33 @@
 # Read in conservation features: Habitat map and Sabellaria and mussels, and process these ready for combining into the planning units (pu)
 library(sf)
 library(tidyverse)
+library(units)
 #library(mapview)
 
 
 # FEATURES (Read in)
 # HABITAT - all habitats read in, target 0 for non designated habitat: Note that this habitat file was prepared in QGIS. Multiple steps were taken to prepare it: see prject files on server.
-habitat <- sf::st_read("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/goodwin_habitat_utm31n.gpkg", layer = "goodwin_habitat_utm31n_intersect_hex_pus")
-hab <- habitat %>% dplyr::select(fid, puid, eunis_l3, sf_code, sf_name, orig_hab,hab_type, area, geom)
-hab <- hab %>% mutate(area_km = area/1000000)
-# plot(st_geometry(hab), col = as.factor(hab$eunis_l3))
+habitat <- st_read("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/goodwin_habitat_utm31n.gpkg", layer = "goodwin_habitat_utm31n")
+
+# INTERSECTION of habitat and planning unit layer
+hab_per_pu <- st_intersection(habitat, pu_sf)
+
+# {NOT RUN - no longer needed as PUs are created inside R}
+#habitat <- sf::st_read("C:/Users/Phillip Haupt/Documents/MPA/MCZs/GoodwinSands/spatial_planning/original_data/goodwin_habitat_utm31n.gpkg", layer = "goodwin_habitat_utm31n_intersect_hex_pus")
+
+# add area parameter
+hab_areas <- hab_per_pu %>% st_area()
+hab_per_pu$area_km <- as.numeric(hab_areas)/1000000  
+
+hab <- hab_per_pu %>% dplyr::select(id, eunis_l3, sf_code, sf_name, orig_hab,hab_type, area_km, geom)
 
 # ggplot
 ggplot2::ggplot()+
-  geom_sf(data = hab, aes(fill = orig_hab))
+  geom_sf(data = hab_per_pu, aes(fill = orig_hab))
 
-# mapview::mapview(hab,zcol = "orig_hab")
+
 # 
-# 
-# 
-# 
-# 
-# # plot map of habitat, Sabellaia and mussels
-# mapview::mapview(list(hab, sab_and_mussels),
-#                  zcol = list("orig_hab", "name"),
-#                  cex = list(NULL, "count"),
-#                  burst = TRUE)
-# 
-# prepare a habitat data set without a geomoetry for fast processing whre geometry is not required.
+# prepare a habitat data set without a geometry for fast processing where geometry is not required.
 hab_no_geom <- hab %>% st_drop_geometry()
 
 # house keeping - remove large objects to free up memory

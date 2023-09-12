@@ -1,4 +1,4 @@
-# Add the aggeregate extraction area as LOCKED OUT - 
+# Add the aggregate extraction area as LOCKED OUT - 
 
 library(tidyverse)
 library(sf)

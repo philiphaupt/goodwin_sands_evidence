@@ -20,10 +20,16 @@ source("./scripts/map_utelities_prep_goodwin_mcz.R", echo=T) # MCZ
 
 # PLANNING UNITS
 # 1. Prepare the planning units 1 - read in , assign baseline cost, provide fields/columns for inserting locked in locked out info & repeat this so that there are options with and without geometry, and one with only geometry and puid
-file.edit("./scripts/pu_hex_prepare.R", echo=T)
+source("./scripts/pu_hex_prepare.R", echo=T)
 
-# 2. Prepare planning units 2 - assign locked out areas
-source("./scripts/pu_prep_locked_out.R", echo=T)
+# 2. Set COST for planning units
+source("./scripts/cost_pu.R")
+
+# 2. {NOT RUN this would have been to exclude aggeregate dredging areas - but this is now open for selecion again becuase the license application has been halted.}Prepare planning units 2 - assign locked out areas
+# file.edit("./scripts/pu_prep_locked_out.R", echo=T)
+
+# 3. Planning Unit finishing before creating PUvSP matrix
+source("./scripts/pu_final_prep.R")
 
 
 # CONSERVATION FEATURES
@@ -43,12 +49,14 @@ source("./scripts/feature_prep_habitat_map.R", echo=T) # included
 # source("./scripts/feature_prep_fish_NS_IBTS_survey.R", echo=T) # Warning: slow, large data set, long processing time # not included
 #----------
 
-# 7. PUVSP (create planing units using one of two approaches - 1 with sabellaria ,mapped out polygons, 2, sabellaria points)
+# 7. PUVSP (create planing units using one of two approaches - 1 with Sabellaria ,mapped out polygons, 2, Sabellaria points)
 if("sab_polys" %in% ls()){
   source("./scripts/puvsp_prep_with_sab_polys.R", echo=T)
 } else {
 source("./scripts/puvsp_prep.R", echo=T)
 }
+
+
 # TARGETS
 # 8. Set conservation target for habitats and species & other features
 source("./scripts/targets_set.R", echo=T)

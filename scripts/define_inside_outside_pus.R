@@ -31,18 +31,5 @@ ggplot()+
 # compilation
 total_planning_area <-  sf::st_union(keifca_goodwin,
                                          buffer_mmo_strip) %>% select(geom)
-                                         #by_feature = TRUE,
-                                         #unary_union = FALSE)
 
-# compilation
-# recombined_zoned_goodwin <-  sf::st_join(x = keifca_goodwin,
-#                                          y = buffer_mmo_strip,
-#                                          join = st_crosses
-#                                          ) # st_combine(x =, y = mmo_without_buffer)
-
-# # test plot
-# ggplot()+
-#   geom_sf(data = goodwin_utm31_sf)+
-# #  geom_sf(data = keifca_goodwin, fill = "blue", alpha = 0.2)+
-#   geom_sf(data = recombined_zoned_goodwin, alpha = 0.2)
 
